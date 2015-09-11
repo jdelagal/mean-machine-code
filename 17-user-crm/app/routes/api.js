@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
+var Catalogo       = require('../models/catalogo');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -220,6 +221,21 @@ module.exports = function(app, express) {
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);
 	});
+
+	// on routes that end in /catalogo
+	// ----------------------------------------------------
+	apiRouter.route('/catalogo')
+		// get all the users (accessed at GET http://localhost:8080/api/catalogo)
+		.get(function(req, res) {
+
+			Catalogo.find({}, function(err, catalogo) {
+				if (err) res.send(err);
+
+				// return the users
+				res.json(catalogo);
+			});
+		});
+
 
 	return apiRouter;
 };

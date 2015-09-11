@@ -36,7 +36,15 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/users/single.html',
 			controller: 'userEditController',
 			controllerAs: 'user'
-		});
+		})
+
+
+		// show all catalogo
+		.when('/catalogo', {
+			templateUrl: 'app/views/pages/catalogo/all.html',
+			controller: 'catalogoController',
+			controllerAs: 'catalogo'
+		})
 
 	$locationProvider.html5Mode(true);
 

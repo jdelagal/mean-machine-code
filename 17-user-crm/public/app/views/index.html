@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>User CRM</title>
+	<title>Catálogo Servicios</title>
 
 	<!-- FOR ANGULAR ROUTING -->
 	<base href="/">
@@ -31,21 +31,21 @@
 	<script src="app/app.routes.js"></script>
 	<script src="app/app.js"></script>
 </head>
-<body ng-app="userApp" ng-controller="mainController as main">
+<body ng-app="catalogoApp" ng-controller="mainController as main">
 
 <!-- NAVBAR -->
 <header>
 	<div class="navbar navbar-inverse" ng-if="main.loggedIn">
 	<div class="container">
 		<div class="navbar-header">
-			<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> User CRM</a>
+			<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-play-circle text-overflow"></span> Catálogo Servicios</a>
 		</div>	
 		<ul class="nav navbar-nav">
-			<li><a href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+			<li><a href="/catalogo"><span class="glyphicon glyphicon-collapse-down"></span>Gestión de Entregas</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
-			<li ng-if="main.loggedIn" class="navbar-text">Hello {{ main.user.username }}!</li>
+			<li ng-if="main.loggedIn" class="navbar-text">Bienvenido {{ main.user.username }}!</li>
 			<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
 		</ul>
 	</div>

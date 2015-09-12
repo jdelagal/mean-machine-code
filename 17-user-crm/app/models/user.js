@@ -1,12 +1,13 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 var bcrypt 		 = require('bcrypt-nodejs');
-
-// user schema 
+var Order       = require('./order');
+// user schema
 var UserSchema   = new Schema({
 	name: String,
 	username: { type: String, required: true, index: { unique: true }},
-	password: { type: String, required: true, select: false }
+	password: { type: String, required: true, select: false },
+	order: [Order],
 });
 
 // hash the password before the user is saved

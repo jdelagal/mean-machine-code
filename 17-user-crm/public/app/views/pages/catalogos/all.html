@@ -1,0 +1,20 @@
+<div class="jumbotron text-center" ng-show="catalogo.evaluando">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Cargando Catalogo...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="catalogo.catalogos">
+	<thead>
+		<tr>
+			<th>Servicio</th>
+			<th>Proceso</th>
+			<th class="col-sm-2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="servicio in catalogo.catalogos">
+			<td>{{ servicio.servicio }}</td>
+			<td>{{ servicio.proceso }}</td>
+		</tr>
+	</tbody>
+</table>

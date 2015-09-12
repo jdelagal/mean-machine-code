@@ -22,10 +22,12 @@
 	<!-- controllers -->
 	<script src="app/controllers/mainCtrl.js"></script>
 	<script src="app/controllers/userCtrl.js"></script>
+	<script src="app/controllers/catalogoCtrl.js"></script>
 
 	<!-- services -->
 	<script src="app/services/authService.js"></script>
 	<script src="app/services/userService.js"></script>
+	<script src="app/services/catalogoService.js"></script>
 
 	<!-- main Angular app files -->
 	<script src="app/app.routes.js"></script>
@@ -41,7 +43,7 @@
 			<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-play-circle text-overflow"></span> Catálogo Servicios</a>
 		</div>	
 		<ul class="nav navbar-nav">
-			<li><a href="/catalogo"><span class="glyphicon glyphicon-collapse-down"></span>Gestión de Entregas</a></li>
+			<li><a href="/catalogos"><span class="glyphicon glyphicon-collapse-down"></span>Gestión de Entregas</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>

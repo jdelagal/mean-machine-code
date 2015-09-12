@@ -40,8 +40,8 @@ angular.module('app.routes', ['ngRoute'])
 
 
 		// show all catalogo
-		.when('/catalogo', {
-			templateUrl: 'app/views/pages/catalogo/all.html',
+		.when('/catalogos', {
+			templateUrl: 'app/views/pages/catalogos/all.html',
 			controller: 'catalogoController',
 			controllerAs: 'catalogo'
 		})

@@ -31,7 +31,7 @@ angular.module('mainCtrl', [])
 
 				// if a user successfully logs in, redirect to users page
 				if (data.success)
-					$location.path('/users');
+					$location.path('/catalogos');
 				else
 					vm.error = data.message;
 
@@ -51,6 +51,6 @@ angular.module('mainCtrl', [])
 	};
 
 	vm.volverUsersList = function() {
-		$location.path('/users');
+		$location.path('/catalogos');
 	};
 });

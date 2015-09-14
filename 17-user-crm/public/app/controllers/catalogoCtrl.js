@@ -43,4 +43,40 @@ angular.module('catalogoCtrl', ['catalogoService'])
 			
 	};	
 
+})
+
+
+// controller applied to catalogo edit page
+.controller('catalogoEditController', function($routeParams, Catalogo) {
+
+	var vm = this;
+
+	// variable to hide/show elements of the view
+	// differentiates between create or edit pages
+	vm.type = 'edit';
+
+	// get the catalogo data for the user you want to edit
+	// $routeParams is the way we grab data from the URL
+	Catalogo.get($routeParams.catalogo_id)
+		.success(function(data) {
+			vm.catalogoData = data;
+		});
+
+	// function to save the catalogo
+	vm.saveCatalogo = function() {
+		vm.evaluando = true;
+		vm.message = '';
+
+		// call the catalogoService function to update 
+		Catalogo.update($routeParams.catalogo_id, vm.catalogoData)
+			.success(function(data) {
+				vm.evaluando = false;
+
+				// clear the form
+				vm.catalogoData = {};
+
+				// bind the message from our API to vm.message
+				vm.message = data.message;
+			});
+	};
 });

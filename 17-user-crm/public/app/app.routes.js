@@ -55,6 +55,13 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'catalogo'
 		})
 
+				// page to edit a catalogo
+		.when('/catalogos/:catalogo_id', {
+			templateUrl: 'app/views/pages/catalogos/single.html',
+			controller: 'catalogoEditController',
+			controllerAs: 'catalogo'
+		})
+
 	$locationProvider.html5Mode(true);
 
 });

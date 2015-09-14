@@ -232,6 +232,7 @@ module.exports = function(app, express) {
 			catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
 			catalogo.canal = req.body.canal;  // set the catalogos canal (comes from the request)			
 			catalogo.consumidor = req.body.consumidor;  // set the catalogos consumidor (comes from the request)
+			
 			catalogo.save(function(err) {
 				if (err) {
 					// duplicate entry
@@ -247,7 +248,7 @@ module.exports = function(app, express) {
 
 		})
 
-		.get(function(req, res) {
+		.get(function(req, res) {	
 			
 			Catalogo.find({}, function(err, catalogos) {
 				if (err) res.send(err);
@@ -256,6 +257,46 @@ module.exports = function(app, express) {
 				res.json(catalogos);
 			});
 		});
+
+	// on routes that end in /catalogos/:catalogo_id
+	// ----------------------------------------------------
+	apiRouter.route('/catalogos/:catalogo_id')
+
+		// get the catalogo with that id
+		.get(function(req, res) {
+			Catalogo.findById(req.params.catalogo_id, function(err, catalogo) {
+				if (err) res.send(err);
+
+				// return that catalogo
+				res.json(catalogo);
+			});
+		})
+
+		// update the catalogo with this id
+		.put(function(req, res) {
+			Catalogo.findById(req.params.catalogo_id, function(err, catalogo) {
+
+				if (err) res.send(err);
+
+				// set the new catalogo information if it exists in the request
+				if (req.body.name) catalogo.servicio = req.body.servicio;
+				if (req.body.proceso) catalogo.proceso = req.body.proceso;
+				if (req.body.entregable) catalogo.entregable = req.body.entregable;
+				if (req.body.entorno) catalogo.entorno = req.body.entorno;
+				if (req.body.canal) catalogo.canal = req.body.canal;
+				if (req.body.consumidor) catalogo.consumidor = req.body.consumidor;
+
+				// save the catalogo
+				catalogo.save(function(err) {
+					if (err) res.send(err);
+
+					// return a message
+					res.json({ message: 'Catalogo actualizado.' });
+				});
+
+			});
+		});
+
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);

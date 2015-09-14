@@ -221,6 +221,32 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/catalogos')
 		// get all the users (accessed at GET http://localhost:8080/api/catalogos)
+
+				// create a user (accessed at POST http://localhost:8080/users)
+		.post(function(req, res) {
+			
+			var catalogo = new Catalogo();		// create a new instance of the Catalogo model
+			catalogo.servicio = req.body.servicio;  // set the catalogos services (comes from the request)
+			catalogo.proceso = req.body.proceso;  // set the catalogos proceso (comes from the request)
+			catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
+			catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
+			catalogo.canal = req.body.canal;  // set the catalogos canal (comes from the request)			
+			catalogo.consumidor = req.body.consumidor;  // set the catalogos consumidor (comes from the request)
+			catalogo.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El catatolo con ese valor del servicio ya existe. '});
+					else 
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'Catalogo creado.' });
+			});
+
+		})
+
 		.get(function(req, res) {
 			
 			Catalogo.find({}, function(err, catalogos) {

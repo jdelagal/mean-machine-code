@@ -50,7 +50,7 @@ angular.module('mainCtrl', [])
 		Auth.createSampleUser();
 	};
 
-	vm.volverUsersList = function() {
+	vm.volverCatalogoList = function() {
 		$location.path('/catalogos');
 	};
 });

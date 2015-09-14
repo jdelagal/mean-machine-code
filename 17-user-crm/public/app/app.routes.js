@@ -46,6 +46,15 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'catalogo'
 		})
 
+
+		// form to create a new catalogo
+		// same view as edit page
+		.when('/catalogos/create', {
+			templateUrl: 'app/views/pages/catalogos/single.html',
+			controller: 'catalogoCreateController',
+			controllerAs: 'catalogo'
+		})
+
 	$locationProvider.html5Mode(true);
 
 });

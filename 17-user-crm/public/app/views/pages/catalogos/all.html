@@ -1,3 +1,12 @@
+<div class="page-header">
+	<h1>
+		<a href="/catalogos/create" class="btn btn-default">
+			<span class="glyphicon glyphicon-plus"></span>
+			Nuevo Catalogo
+		</a>
+	</h1>
+
+</div>
 <div class="jumbotron text-center" ng-show="catalogo.evaluando">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
 	<p>Cargando Catalogo...</p>
@@ -8,6 +17,10 @@
 		<tr>
 			<th>Servicio</th>
 			<th>Proceso</th>
+			<th>Entregable</th>
+			<th>Entorno</th>
+			<th>Canal</th>
+			<th>Consumidor</th>
 			<th class="col-sm-2"></th>
 		</tr>
 	</thead>
@@ -15,6 +28,14 @@
 		<tr ng-repeat="servicio in catalogo.catalogos">
 			<td>{{ servicio.servicio }}</td>
 			<td>{{ servicio.proceso }}</td>
+			<td>{{ servicio.entregable }}</td>
+			<td>{{ servicio.entorno }}</td>
+			<td>{{ servicio.canal }}</td>
+			<td>{{ servicio.consumidor }}</td>
+			<td class="col-sm-2">
+				<a ng-href="/catalogos/{{ servicio._id }}" class="btn btn-danger">Editar</a>
+				<a href="#" ng-click="catalogo.deleteCatalogo(servicio._id)" class="btn btn-primary">Borrar</a>
+			</td>			
 		</tr>
 	</tbody>
 </table>

@@ -1,0 +1,69 @@
+<div class="page-header">
+	<h3 ng-if="catalogo.type == 'create'">Crear Catalogo</h3>
+	<h3 ng-if="catalogo.type == 'edit'">Editar Catalogo</h3>
+</div>
+
+<form class="form-horizontal" ng-submit="catalogo.saveCatalogo()">
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Servicio</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="catalogo.catalogoData.servicio">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Proceso</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="catalogo.catalogoData.proceso">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Entregable</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="catalogo.catalogoData.entregable">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Entorno</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="catalogo.catalogoData.entorno">
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Canal</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="catalogo.catalogoData.canal">
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Consumidor</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="catalogo.catalogoData.consumidor">
+		</div>
+	</div>		
+
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="catalogo.type == 'create'">Crear Catalogo</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="catalogo.type == 'edit'">Editar Catalogo</button>
+				<br>
+				<p><a href="#" ng-click="main.volverCatalogoList()" class="btn btn-sm btn-primary">Volver</a></p>
+	</div>
+	</div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+
+		<div class="alert alert-info">
+			{{ user.message }}
+		</div>
+
+	</div>
+</div>

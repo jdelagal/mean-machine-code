@@ -12,6 +12,10 @@ angular.module('catalogoService', [])
 
 	};
 
+	// create a catalogo
+	catalogoFactory.create = function(catalogoData) {
+		return $http.post('/api/catalogos/', catalogoData);
+	};
 		// return our entire catalogoFactory object
 	return catalogoFactory;
 

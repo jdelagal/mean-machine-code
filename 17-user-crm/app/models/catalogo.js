@@ -5,7 +5,11 @@ var bcrypt 		 = require('bcrypt-nodejs');
 // user schema 
 var CatalogoSchema   = new Schema({
 	servicio: { type: String, required: true, index: { unique: true }},
-	proceso: String
+	proceso: String,
+	entregable: String,
+	entorno: String,
+	canal: String,
+	consumidor: String
 });
 
 module.exports = mongoose.model('Catalogo', CatalogoSchema);

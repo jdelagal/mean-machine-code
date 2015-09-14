@@ -17,6 +17,24 @@ angular.module('catalogoCtrl', ['catalogoService'])
 			// bind the users that come back to vm.users
 			vm.catalogos = data;
 		});
+	// function to delete a user
+	vm.deleteCatalogo = function(id) {
+		vm.evaluando = true;
+
+		Catalogo.delete(id)
+			.success(function(data) {
+
+				// get all users to update the table
+				// you can also set up your api 
+				// to return the list of catalogos with the delete call
+				Catalogo.all()
+					.success(function(data) {
+						vm.evaluando = false;
+						vm.catalogos = data;
+					});
+
+			});
+	};
 })
 
 // controller applied to user creation page

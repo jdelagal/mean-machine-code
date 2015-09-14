@@ -25,6 +25,11 @@ angular.module('catalogoService', [])
 	catalogoFactory.update = function(id, catalogoData) {
 		return $http.put('/api/catalogos/' + id, catalogoData);
 	};
+
+	// delete a catalogo
+	catalogoFactory.delete = function(id) {
+		return $http.delete('/api/catalogos/' + id);
+	};
 		// return our entire catalogoFactory object
 	return catalogoFactory;
 

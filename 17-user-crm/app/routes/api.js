@@ -295,6 +295,16 @@ module.exports = function(app, express) {
 				});
 
 			});
+		})
+
+		// delete the catalogo with this id
+		.delete(function(req, res) {
+			Catalogo.remove({
+				_id: req.params.catalogo_id
+			}, function(err, catalogo) {
+				if (err) res.send(err);
+				res.json({ message: 'Borrado con Exito.' });
+			});
 		});
 
 	// api endpoint to get user information

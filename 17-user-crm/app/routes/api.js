@@ -230,6 +230,11 @@ module.exports = function(app, express) {
 			catalogo.proceso = req.body.proceso;  // set the catalogos proceso (comes from the request)
 			catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
 			catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
+			catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
+			catalogo.fecha_pre = req.body.fecha_pre;  // set the catalogos fecha_pre (comes from the request)
+			catalogo.fecha_demo = req.body.fecha_demo;  // set the catalogos fecha_demo (comes from the request)
+			catalogo.fecha_int = req.body.fecha_int;  // set the catalogos fecha_int (comes from the request)
+			catalogo.fecha_dev = req.body.fecha_dev;  // set the catalogos fecha_dev (comes from the request)
 			catalogo.canal = req.body.canal;  // set the catalogos canal (comes from the request)			
 			catalogo.consumidor = req.body.consumidor;  // set the catalogos consumidor (comes from the request)
 			
@@ -283,7 +288,11 @@ module.exports = function(app, express) {
 				if (req.body.proceso) catalogo.proceso = req.body.proceso;
 				if (req.body.entregable) catalogo.entregable = req.body.entregable;
 				if (req.body.entorno) catalogo.entorno = req.body.entorno;
-				if (req.body.canal) catalogo.canal = req.body.canal;
+				if (req.body.fecha_prod) catalogo.fecha_prod = req.body.fecha_prod;
+				if (req.body.fecha_pre) catalogo.fecha_pre = req.body.fecha_pre;
+				if (req.body.fecha_demo) catalogo.fecha_demo = req.body.fecha_demo;
+				if (req.body.fecha_int) catalogo.fecha_int = req.body.fecha_int;
+				if (req.body.fecha_dev) catalogo.fecha_dev = req.body.fecha_dev;
 				if (req.body.consumidor) catalogo.consumidor = req.body.consumidor;
 
 				// save the catalogo

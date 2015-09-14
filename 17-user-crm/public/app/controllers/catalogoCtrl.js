@@ -50,7 +50,6 @@ angular.module('catalogoCtrl', ['catalogoService'])
 	vm.saveCatalogo = function() {
 		vm.evaluando = true;
 		vm.message = '';
-
 		// use the create function in the catalogoService
 		Catalogo.create(vm.catalogoData)
 			.success(function(data) {
@@ -65,7 +64,7 @@ angular.module('catalogoCtrl', ['catalogoService'])
 
 
 // controller applied to catalogo edit page
-.controller('catalogoEditController', function($routeParams, Catalogo) {
+.controller('catalogoEditController', function($location,$routeParams, Catalogo) {
 
 	var vm = this;
 
@@ -95,6 +94,7 @@ angular.module('catalogoCtrl', ['catalogoService'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
+				$location.path('/catalogos');
 			});
 	};
 });

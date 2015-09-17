@@ -34,7 +34,7 @@ angular.module('mainCtrl', [])
 					$location.path('/catalogos');
 				else
 					vm.error = data.message;
-				
+
 			});
 	};
 

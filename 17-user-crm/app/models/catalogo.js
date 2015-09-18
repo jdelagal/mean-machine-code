@@ -8,7 +8,7 @@ var CatalogoSchema   = new Schema({
 	proceso: String,
 	entregable: String,
 	entorno: String,
-	fecha_prod: String,
+	fecha_prod: Date,
 	fecha_pre: String,
 	fecha_demo: String,
 	fecha_int: String,

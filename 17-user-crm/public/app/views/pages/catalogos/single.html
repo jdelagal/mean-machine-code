@@ -35,50 +35,79 @@
 		      <option value="Demo">Demo</option>
 		      <option value="Integración">Integración</option>
 		      <option value="Desarrollo">Desarrollo</option>
-		    </select		
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.entorno">
+		    </select>	
 		</div>
 	</div>	
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Fecha Producción</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.fecha_prod">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_prod"
+			       placeholder="..."
+			       name="time"
+			       format-date>			
 		</div>
 	</div>	
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Fecha Preproducción</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.fecha_pre">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_pre"
+			       placeholder="..."
+			       name="time"
+			       format-date>				
 		</div>
 	</div>	
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Fecha Demo</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.fecha_demo">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_demo"
+			       placeholder="..."
+			       name="time"
+			       format-date>				
 		</div>
 	</div>	
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Fecha Integracion</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.fecha_int">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_int"
+			       placeholder="..."
+			       name="time"
+			       format-date>					
 		</div>
 	</div>	
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Fecha Desarrollo</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.fecha_dev">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_dev"
+			       placeholder="..."
+			       name="time"
+			       format-date>					
 		</div>
 	</div>		
 				
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Canal</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.canal">
+		 	<select name="multipleSelect" id="multipleSelect" ng-model="catalogo.catalogoData.canal" >
+		      <option value="Producción">Internet</option>
+		      <option value="Preproducción">Intranet</option>
+		      <option value="Demo">Interno</option>
+		      <option value="Integración">Intranet Sanitaria</option>
+		    </select>				
 		</div>
 	</div>	
 

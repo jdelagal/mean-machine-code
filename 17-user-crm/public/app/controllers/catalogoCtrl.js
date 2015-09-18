@@ -35,6 +35,7 @@ angular.module('catalogoCtrl', ['catalogoService'])
 
 			});
 	};
+
 })
 
 // controller applied to user creation page

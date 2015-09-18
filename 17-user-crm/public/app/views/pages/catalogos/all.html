@@ -19,6 +19,7 @@
 			<th>Proceso</th>
 			<th>Entregable</th>
 			<th>Entorno</th>
+			<th>Fecha Producción</th>
 			<th>Canal</th>
 			<th>Consumidor</th>
 			<th class="col-sm-2"></th>
@@ -30,6 +31,15 @@
 			<td>{{ servicio.proceso }}</td>
 			<td>{{ servicio.entregable }}</td>
 			<td>{{ servicio.entorno }}</td>
+			<td class="col-sm-2">
+				<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="servicio.fecha_prod"
+			       placeholder="..."
+			       name="time"
+			       readonly="" 
+			       format-date>	
+			</td>
 			<td>{{ servicio.canal }}</td>
 			<td>{{ servicio.consumidor }}</td>
 			<td class="col-sm-2">

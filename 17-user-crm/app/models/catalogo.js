@@ -9,10 +9,10 @@ var CatalogoSchema   = new Schema({
 	entregable: String,
 	entorno: String,
 	fecha_prod: Date,
-	fecha_pre: String,
-	fecha_demo: String,
-	fecha_int: String,
-	fecha_dev: String,
+	fecha_pre: Date,
+	fecha_demo: Date,
+	fecha_int: Date,
+	fecha_dev: Date,
 	canal: String,
 	consumidor: String
 });

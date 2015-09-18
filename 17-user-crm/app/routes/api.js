@@ -293,6 +293,7 @@ module.exports = function(app, express) {
 				if (req.body.fecha_demo) catalogo.fecha_demo = req.body.fecha_demo;
 				if (req.body.fecha_int) catalogo.fecha_int = req.body.fecha_int;
 				if (req.body.fecha_dev) catalogo.fecha_dev = req.body.fecha_dev;
+				if (req.body.canal) catalogo.canal = req.body.canal;
 				if (req.body.consumidor) catalogo.consumidor = req.body.consumidor;
 
 				// save the catalogo

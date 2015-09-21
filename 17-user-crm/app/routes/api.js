@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
 var Catalogo       = require('../models/catalogo');
+var Entregable       = require('../models/entregable');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -314,6 +315,19 @@ module.exports = function(app, express) {
 			}, function(err, catalogo) {
 				if (err) res.send(err);
 				res.json({ message: 'Borrado con Exito.' });
+			});
+		});
+
+	// on routes that end in /estregables
+	// ----------------------------------------------------
+	apiRouter.route('/entregables')
+		.get(function(req, res) {	
+			
+			Entregable.find({}, function(err, entregables) {
+				if (err) res.send(err);
+
+				// return the entregables
+				res.json(entregables);
 			});
 		});
 

@@ -6,7 +6,6 @@ var Catalogo = mongoose.model('Catalogo');
 // Entragabnle schema 
 var EntregableSchema   = new Schema({
 	nombre: { type: String, required: true, index: { unique: true }},
-	fecha: Date,
 	entorno: String,
 	fecha_prod: Date,
 	fecha_pre: Date,

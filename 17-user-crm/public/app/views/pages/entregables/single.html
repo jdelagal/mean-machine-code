@@ -1,21 +1,21 @@
 <div class="page-header">
-	<h3 ng-if="catalogo.type == 'create'">Crear Catalogo</h3>
-	<h3 ng-if="catalogo.type == 'edit'">Editar Catalogo</h3>
+	<h3 ng-if="entregable.type == 'create'">Crear Entregable</h3>
+	<h3 ng-if="entregable.type == 'edit'">Editar Entregable</h3>
 </div>
 
-<form class="form-horizontal" ng-submit="catalogo.saveCatalogo()">
+<form class="form-horizontal" ng-submit="entregable.saveEntregable()">
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Servicio</label>
+		<label class="col-sm-2 control-label">Nombre</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.servicio">
+			<input type="text" class="form-control" ng-model="entregable.entregableData.nombre">
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Descripción</label>
+		<label class="col-sm-2 control-label">Entorno</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.proceso">
+			<input type="text" class="form-control" ng-model="entregable.entregableData.entorno">
 		</div>
 	</div>
 	<!--
@@ -100,30 +100,11 @@
 	</div>		
 	-->			
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Canal</label>
-		<div class="col-sm-6">
-		 	<select name="multipleSelect" id="multipleSelect" ng-model="catalogo.catalogoData.canal" >
-		      <option value="Internet">Internet</option>
-		      <option value="Intranet">Intranet</option>
-		      <option value="Interno">Interno</option>
-		      <option value="Intranet Sanitaria">Intranet Sanitaria</option>
-		    </select>				
-		</div>
-	</div>	
-
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Consumidor</label>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="catalogo.catalogoData.consumidor">
-		</div>
-	</div>		
-
-	<div class="form-group">
 	<div class="col-sm-offset-2 col-sm-6">
-		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="catalogo.type == 'create'">Crear Catalogo</button>
-		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="catalogo.type == 'edit'">Editar Catalogo</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="entregable.type == 'create'">Crear Entregable</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="entregable.type == 'edit'">Editar Entregable</button>
 				<br>
-				<p><a href="#" ng-click="main.volverCatalogoList()" class="btn btn-sm btn-primary">Volver</a></p>
+				<p><a href="#" ng-click="main.volverEntregableList()" class="btn btn-sm btn-primary">Volver</a></p>
 	</div>
 	</div>
 

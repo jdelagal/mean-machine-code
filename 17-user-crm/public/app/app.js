@@ -1,5 +1,5 @@
 angular.module('catalogoApp', 
-	['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService','catalogoCtrl', 'catalogoService'])
+	['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService','catalogoCtrl', 'catalogoService','entregableCtrl', 'entregableService'])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {

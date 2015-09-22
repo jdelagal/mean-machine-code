@@ -62,6 +62,19 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'catalogo'
 		})
 
+		// show all entregables
+		.when('/entregables', {
+			templateUrl: 'app/views/pages/entregables/all.html',
+			controller: 'entregableController',
+			controllerAs: 'entregable'
+		})
+
+		.when('/entregables/create', {
+			templateUrl: 'app/views/pages/entregables/single.html',
+			controller: 'entregableCreateController',
+			controllerAs: 'entregable'
+		})		
+
 	$locationProvider.html5Mode(true);
 
 });

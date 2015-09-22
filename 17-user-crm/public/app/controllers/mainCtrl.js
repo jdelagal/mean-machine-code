@@ -53,6 +53,10 @@ angular.module('mainCtrl', [])
 	vm.volverCatalogoList = function() {
 		$location.path('/catalogos');
 	};
+
+	vm.volverEntregableList = function() {
+		$location.path('/entregables');
+	};	
 })
 
 .directive("formatDate", function(){

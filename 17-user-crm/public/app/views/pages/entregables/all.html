@@ -1,0 +1,46 @@
+<div class="page-header">
+	<h1>
+		<a href="/entregables/create" class="btn btn-default">
+			<span class="glyphicon glyphicon-plus"></span>
+			Nuevo Entregable
+		</a>
+	</h1>
+
+</div>
+<div class="jumbotron text-center" ng-show="entregable.entregando">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Cargando Entregable...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="entregable.entregables">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Entorno</th>
+			<!--<th>Fecha Producción</th>-->
+			<th class="col-sm-2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="entregado in entregable.entregables">
+			<td>{{ entregado.nombre }}</td>
+			<td>{{ entregado.entorno }}</td>
+			<!--<td>{{ servicio.entregable }}</td>
+			<td>{{ servicio.entorno }}</td>
+			<td class="col-sm-2">
+				<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="servicio.fecha_prod"
+			       placeholder="..."
+			       name="time"
+			       readonly="" 
+			       format-date>	
+			</td>
+			-->
+			<td class="col-sm-2">
+				<!--<a ng-href="/entregables/{{ entregable._id }}" class="btn btn-primary">Editar</a>-->
+
+			</td>			
+		</tr>
+	</tbody>
+</table>

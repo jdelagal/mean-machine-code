@@ -15,6 +15,11 @@ angular.module('entregableService', [])
 	entregableFactory.create = function(entregableData) {
 		return $http.post('/api/entregables/', entregableData);
 	};
+
+	// get a single entregable de un catalogo
+	entregableFactory.getEntregableCatalogo = function(id) {
+		return $http.get('/api/entregables/' + id);
+	};
 	// return our entire entragableFactory object
 	return entregableFactory;
 

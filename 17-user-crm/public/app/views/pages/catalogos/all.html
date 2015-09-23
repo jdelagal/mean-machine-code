@@ -28,7 +28,13 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="servicio in catalogo.catalogos">
-			<td>{{ servicio.servicio }}</td>
+			<td>
+				<a href="#" ng-href="/entregables/{{ servicio._id }}">
+				{{ servicio.servicio }}
+				</a>
+			</td>
+					
+			
 			<!--<td>{{ servicio.proceso }}</td>
 			<td>{{ servicio.entregable }}</td>
 			<td>{{ servicio.entorno }}</td>

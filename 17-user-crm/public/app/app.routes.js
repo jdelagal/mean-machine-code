@@ -73,7 +73,13 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/entregables/single.html',
 			controller: 'entregableCreateController',
 			controllerAs: 'entregable'
-		})		
+		})	
+		
+		.when('/entregables/:catalogo_id', {
+			templateUrl: 'app/views/pages/entregables/all.html',
+			controller: 'entregableCatalogoController',
+			controllerAs: 'entregable'
+		})				
 
 	$locationProvider.html5Mode(true);
 

@@ -17,6 +17,7 @@
 		<tr>
 			<th>Nombre</th>
 			<th>Entorno</th>
+			<th>Servicio</th>
 			<!--<th>Fecha Producción</th>-->
 			<th class="col-sm-2"></th>
 		</tr>
@@ -25,6 +26,7 @@
 		<tr ng-repeat="entregado in entregable.entregables">
 			<td>{{ entregado.nombre }}</td>
 			<td>{{ entregado.entorno }}</td>
+			<td>{{ entregado.servicio }}</td>
 			<!--<td>{{ servicio.entregable }}</td>
 			<td>{{ servicio.entorno }}</td>
 			<td class="col-sm-2">
@@ -44,3 +46,7 @@
 		</tr>
 	</tbody>
 </table>
+
+<div>
+		<p><a href="#" ng-click="main.volverCatalogoList()" class="btn btn-sm btn-primary">Volver</a></p>
+</div>

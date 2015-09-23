@@ -350,6 +350,17 @@ module.exports = function(app, express) {
 
 		})
 
+//		.get(function(req, res) {	
+//			
+//			Entregable.find({}, function(err, entregables) {
+//				Catalogo.populate(entregables, {path: 'catalogo'})
+//					if (err) res.send(err);
+//
+//					// return the entregables
+//					res.json(entregables);
+//			});
+
+
 		.get(function(req, res) {	
 			
 			Entregable.find({}, function(err, entregables) {
@@ -360,6 +371,21 @@ module.exports = function(app, express) {
 			});
 		});
 
+	// on routes that end in /entregables/:catalogo_id
+	// ----------------------------------------------------
+	apiRouter.route('/entregables/:catalogo_id')
+
+		// get the entregable with that id
+		.get(function(req, res) {
+			Entregable.findById(req.params.catalogo_id, function(err, entregable) {
+				Catalogo.populate(entregable, {path: 'catalogo'})
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(entregable);
+			});
+		});
+		
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);

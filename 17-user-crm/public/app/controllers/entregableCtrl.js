@@ -42,4 +42,16 @@ angular.module('entregableCtrl', ['entregableService'])
 			
 	};	
 
+})
+
+.controller('entregableCatalogoController', function($routeParams, Entregable) {
+
+	var vm = this;
+
+	// get the catalogo data for the user you want to edit
+	// $routeParams is the way we grab data from the URL
+	Entregable.getEntregableCatalogo($routeParams.catalogo_id)
+		.success(function(data) {
+			vm.entregableData = data;
+		});
 });

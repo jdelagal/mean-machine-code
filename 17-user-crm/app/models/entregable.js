@@ -12,7 +12,7 @@ var EntregableSchema   = new Schema({
 	fecha_demo: Date,
 	fecha_int: Date,
 	fecha_dev: Date,
-	servicio: { type: Schema.ObjectId, ref: 'catalogo' } 
+	servicio: { type: Schema.ObjectId, ref: 'Catalogo' } 
 });
 
 module.exports = mongoose.model('Entregable', EntregableSchema);

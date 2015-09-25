@@ -323,7 +323,6 @@ module.exports = function(app, express) {
 	apiRouter.route('/entregables')
 
 		.post(function(req, res) {
-			console.log ("33333333333333333333");
 			var entregable = new Entregable();		// create a new instance of the Catalogo model
 			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
 			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
@@ -353,10 +352,13 @@ module.exports = function(app, express) {
 		.get(function(req, res) {	
 			
 			Entregable.find({}, function(err, entregables) {
-				if (err) res.send(err);
+				Catalogo.populate(entregables, {path: "catalogo"}, function(err, entregables){
+					if (err) res.send(err);
 
-				// return the entregables
-				res.json(entregables);
+					// return the entregables
+					res.json(entregables);
+					console.log ("11111111111111 " + entregables);
+				});
 			});
 		});
 

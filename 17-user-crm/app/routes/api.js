@@ -357,7 +357,7 @@ module.exports = function(app, express) {
 
 					// return the entregables
 					res.json(entregables);
-					console.log ("11111111111111 " + entregables);
+					//console.log ("11111111111111 " + entregables);
 				});
 			});
 		});

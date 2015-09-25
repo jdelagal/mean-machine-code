@@ -1,8 +1,9 @@
 <div class="page-header">
+	<h3>Listado de Entregables</h3>
 	<h1>
-		<a href="/entregables/create" class="btn btn-default">
-			<span class="glyphicon glyphicon-plus"></span>
-			Nuevo Entregable
+		<a href="/entornos/create" class="btn btn-default">
+			<span class="glyphicon glyphicon-collapse-down"></span>
+			Ver Entornos
 		</a>
 	</h1>
 
@@ -15,14 +16,16 @@
 <table class="table table-bordered table-striped" ng-show="entregable.entregables">
 	<thead>
 		<tr>
+			<th>Servicio</th>
 			<th>Nombre</th>
-			<th>Entorno</th>
+			<th>Entorno Actual</th>
 			<!--<th>Fecha Producción</th>-->
 			<th class="col-sm-2"></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="entregado in entregable.entregables">
+			<td>{{ entregado.catalogo.servicio }}</td>
 			<td>{{ entregado.nombre }}</td>
 			<td>{{ entregado.entorno }}</td>
 			<!--<td>{{ servicio.entregable }}</td>

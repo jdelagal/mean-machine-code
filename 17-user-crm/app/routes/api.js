@@ -323,7 +323,7 @@ module.exports = function(app, express) {
 	apiRouter.route('/entregables')
 
 		.post(function(req, res) {
-			
+			console.log ("33333333333333333333");
 			var entregable = new Entregable();		// create a new instance of the Catalogo model
 			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
 			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
@@ -350,17 +350,6 @@ module.exports = function(app, express) {
 
 		})
 
-//		.get(function(req, res) {	
-//			
-//			Entregable.find({}, function(err, entregables) {
-//				Catalogo.populate(entregables, {path: 'catalogo'})
-//					if (err) res.send(err);
-//
-//					// return the entregables
-//					res.json(entregables);
-//			});
-
-
 		.get(function(req, res) {	
 			
 			Entregable.find({}, function(err, entregables) {
@@ -384,6 +373,34 @@ module.exports = function(app, express) {
 				// return that entregable
 				res.json(entregable);
 			});
+		})
+
+		.post(function(req, res) {
+			var entregable = new Entregable();		// create a new instance of the Catalogo model
+			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
+			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
+			entregable.catalogo = req.params.catalogo_id;  // set the catalogos entorno (comes from the request)
+			//catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
+			//catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
+			//catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
+			//catalogo.fecha_pre = req.body.fecha_pre;  // set the catalogos fecha_pre (comes from the request)
+			//catalogo.fecha_demo = req.body.fecha_demo;  // set the catalogos fecha_demo (comes from the request)
+			//catalogo.fecha_int = req.body.fecha_int;  // set the catalogos fecha_int (comes from the request)
+			//catalogo.fecha_dev = req.body.fecha_dev;  // set the catalogos fecha_dev (comes from the request)
+		
+			entregable.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El entregable con ese valor ya existe. '});
+					else 
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'Entregable creado.' });
+			});
+
 		});
 		
 	// api endpoint to get user information

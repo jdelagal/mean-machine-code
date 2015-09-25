@@ -19,9 +19,8 @@ angular.module('entregableCtrl', ['entregableService'])
 		});
 })
 
-// controller applied to user creation page
-.controller('entregableCreateController', function(Entregable) {
-	
+.controller('entregableCatalogoCreateController', function($routeParams, Entregable) {
+
 	var vm = this;
 
 	// variable to hide/show elements of the view
@@ -33,25 +32,11 @@ angular.module('entregableCtrl', ['entregableService'])
 		vm.entregando = true;
 		vm.message = '';
 		// use the create function in the entregableService
-		Entregable.create(vm.entregableData)
+		Entregable.create($routeParams.catalogo_id, vm.entregableData)
 			.success(function(data) {
 				vm.entregando = false;
 				vm.entregableData = {};
 				vm.message = data.message;
 			});
-			
 	};	
-
-})
-
-.controller('entregableCatalogoController', function($routeParams, Entregable) {
-
-	var vm = this;
-
-	// get the catalogo data for the user you want to edit
-	// $routeParams is the way we grab data from the URL
-	Entregable.getEntregableCatalogo($routeParams.catalogo_id)
-		.success(function(data) {
-			vm.entregableData = data;
-		});
 });

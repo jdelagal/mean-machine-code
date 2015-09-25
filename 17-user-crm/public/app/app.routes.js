@@ -69,15 +69,9 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'entregable'
 		})
 
-		.when('/entregables/create', {
-			templateUrl: 'app/views/pages/entregables/single.html',
-			controller: 'entregableCreateController',
-			controllerAs: 'entregable'
-		})	
-		
 		.when('/entregables/:catalogo_id', {
-			templateUrl: 'app/views/pages/entregables/all.html',
-			controller: 'entregableCatalogoController',
+			templateUrl: 'app/views/pages/entregables/single.html',
+			controller: 'entregableCatalogoCreateController',
 			controllerAs: 'entregable'
 		})				
 

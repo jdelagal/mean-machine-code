@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h3>Listado de Entregables</h3>
+	<h3>Buscar Entregable: </h3><input type="text" ng-model="searchBoxEntregable">
 	<h1>
 		<a href="/entornos/create" class="btn btn-default">
 			<span class="glyphicon glyphicon-collapse-down"></span>
@@ -24,7 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="entregado in entregable.entregables">
+		<tr ng-repeat="entregado in entregable.entregables | filter: searchBoxEntregable">
 			<td>{{ entregado.catalogo.servicio }}</td>
 			<td>{{ entregado.nombre }}</td>
 			<td>{{ entregado.entorno }}</td>

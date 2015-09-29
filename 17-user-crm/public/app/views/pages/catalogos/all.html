@@ -29,7 +29,7 @@
 			-->
 			<th>Canal</th>
 			<th>Consumidor</th>
-			<th class="col-sm-2"></th>
+			<th class="col-sm-2">Operación</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -56,8 +56,12 @@
 			<td>{{ servicio.canal }}</td>
 			<td>{{ servicio.consumidor }}</td>
 			<td class="col-sm-2">
-				<a ng-href="/catalogos/{{ servicio._id }}" class="btn btn-primary">Editar</a>
-				<a href="#" ng-click="catalogo.deleteCatalogo(servicio._id)" class="btn btn-danger">Borrar</a>
+				<a ng-href="/catalogos/{{ servicio._id }}" title="Editar" class="btn btn-default">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
+				<a href="#" ng-click="catalogo.deleteCatalogo(servicio._id)" title="Borrar"class="btn btn-danger">
+					<span class="glyphicon glyphicon-remove-circle"></span>
+				</a>
 			</td>			
 		</tr>
 	</tbody>

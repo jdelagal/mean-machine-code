@@ -258,7 +258,7 @@ module.exports = function(app, express) {
 			
 			Catalogo.find({}, function(err, catalogos) {
 				if (err) res.send(err);
-
+				//console.log ("catalogos: "+catalogos);
 				// return the users
 				res.json(catalogos);
 			});

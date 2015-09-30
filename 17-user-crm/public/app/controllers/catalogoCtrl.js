@@ -1,12 +1,15 @@
-angular.module('catalogoCtrl', ['catalogoService'])
+angular.module('catalogoCtrl', ['catalogoService','ngTable'])
 
-.controller('catalogoController', function(Catalogo) {
+.controller('catalogoController', function(Catalogo,$rootScope,ngTableParams) {
 
 	var vm = this;
 
 	// set a processing variable to show loading things
 	vm.evaluando = true;
-
+	var params = {
+		page: 1,
+	    count: 2
+	}
 	// grab all the users at page load
 	Catalogo.all()
 		.success(function(data) {
@@ -15,8 +18,19 @@ angular.module('catalogoCtrl', ['catalogoService'])
 			vm.evaluando = false;
 
 			// bind the users that come back to vm.users
+			//este data es diferente del data de la paginacion
+			//por ello se descarga en vm.catalogos pues entra
+			//en contexto el componente $data del paginado
 			vm.catalogos = data;
-		});
+			var settings = {
+	            total: vm.catalogos.length, // resultados en total
+	            getData: function($defer, params) {
+	        	    $defer.resolve(vm.catalogos.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	            }
+	        };		
+	        $rootScope.tableParams = new ngTableParams(params,settings);
+	})
+
 	// function to delete a user
 	vm.deleteCatalogo = function(id) {
 		vm.evaluando = true;
@@ -32,10 +46,8 @@ angular.module('catalogoCtrl', ['catalogoService'])
 						vm.evaluando = false;
 						vm.catalogos = data;
 					});
-
-			});
+		});
 	};
-
 })
 
 // controller applied to user creation page

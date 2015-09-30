@@ -18,7 +18,7 @@
 	<p>Cargando Catalogo...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="catalogo.catalogos">
+<table ng-table="tableParams" class="table table-bordered table-striped" ng-show="catalogo.catalogos">
 	<thead>
 		<tr>
 			<th>Servicio</th>
@@ -33,7 +33,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="servicio in catalogo.catalogos | filter: searchBox">
+		<tr ng-repeat="servicio in $data | filter: searchBox">
 			<td>
 				<a href="#" ng-href="/entregables/{{ servicio._id }}">
 				{{ servicio.servicio }}

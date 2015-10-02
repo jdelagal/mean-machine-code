@@ -44,8 +44,22 @@ angular.module('catalogoCtrl', ['catalogoService','ngTable'])
 				// to return the list of catalogos with the delete call
 				Catalogo.all()
 					.success(function(data) {
+						// when all the users come back, remove the processing variable
 						vm.evaluando = false;
+
+						// bind the catalogos that come back to vm.catalogos
+						//este data es diferente del data de la paginacion
+						//por ello se descarga en vm.catalogos pues entra
+						//en contexto el otro data, $data del paginado
 						vm.catalogos = data;
+						var settings = {
+				            total: vm.catalogos.length, // resultados en total,
+				            counts: [5, 10, 15],
+				            getData: function($defer, params) {
+				        	    $defer.resolve(vm.catalogos.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				            }
+				        };		
+				        $rootScope.tableParams = new ngTableParams(params,settings);
 					});
 		});
 	};

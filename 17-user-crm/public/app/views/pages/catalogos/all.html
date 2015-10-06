@@ -35,9 +35,9 @@
 	<tbody>
 		<tr ng-repeat="servicio in $data | filter: searchBox">
 			<td>
-				<a href="#" ng-href="/entregables/{{ servicio._id }}">
 				{{ servicio.servicio }}
-				</a>
+				<a ng-href="/entregables/{{ servicio._id }}" class="glyphicon glyphicon-plus" >
+				</a>				
 			</td>
 					
 			<!--<td>{{ servicio.proceso }}</td>

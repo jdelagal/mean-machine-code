@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h3>Buscar Servicio: </h3><input type="text" ng-model="searchBox">
+	<h3>Buscar Servicio: </h3><input type="text" size="75" ng-model="searchBox">
 	<h1>
 		<a href="/catalogos/create" class="btn btn-default">
 			<span class="glyphicon glyphicon-plus"></span>
@@ -27,18 +27,13 @@
 			<th>Entorno</th>
 			<th>Fecha Producción</th>
 			-->
-			<th>Canal</th>
-			<th>Consumidor</th>
 			<th class="col-sm-2">Operación</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="servicio in $data | filter: searchBox">
 			<td>
-				<a ng-href="/entregables/{{ servicio._id }}" class="glyphicon glyphicon-plus" >
-				</a>
 				{{ servicio.servicio }}
-				
 			</td>
 					
 			<!--<td>{{ servicio.proceso }}</td>
@@ -54,13 +49,14 @@
 			       format-date>	
 			</td>
 			-->
-			<td>{{ servicio.canal }}</td>
-			<td>{{ servicio.consumidor }}</td>
 			<td class="col-sm-2">
-				<a ng-href="/catalogos/{{ servicio._id }}" title="Editar" class="btn btn-default">
+				<a ng-href="/entregables/{{ servicio._id }}" title="Dar de Alta Entregable" class="btn btn-default">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>			
+				<a ng-href="/catalogos/{{ servicio._id }}" title="Editar Catálogo" class="btn btn-default">
 					<span class="glyphicon glyphicon-edit"></span>
 				</a>
-				<a href="#" ng-click="catalogo.deleteCatalogo(servicio._id)" title="Borrar"class="btn btn-danger">
+				<a href="#" ng-click="catalogo.deleteCatalogo(servicio._id)" title="Borrar Catálogo"class="btn btn-danger">
 					<span class="glyphicon glyphicon-remove-circle"></span>
 				</a>
 			</td>			

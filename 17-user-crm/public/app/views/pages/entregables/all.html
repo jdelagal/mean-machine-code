@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h3>Buscar Entregable: </h3><input type="text" ng-model="searchBoxEntregable">
+	<h3>Buscar Entregable: </h3><input type="text" size="75" ng-model="searchBoxEntregable">
 
 </div>
 <div class="jumbotron text-center" ng-show="entregable.entregando">
@@ -10,8 +10,8 @@
 <table class="table table-bordered table-striped" ng-show="entregable.entregables">
 	<thead>
 		<tr>
-			<th>Nombre</th>
 			<th>Servicio</th>
+			<th>Entregable</th>
 			<th>Entorno Actual</th>
 			<th>Fecha Producción</th>
 			<th class="col-sm-2">Operación</th>
@@ -19,8 +19,8 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="entregado in entregable.entregables | filter: searchBoxEntregable">
-			<td>{{ entregado.nombre }}</td>
 			<td>{{ entregado.catalogo.servicio }}</td>
+			<td>{{ entregado.catalogo.nombre }}</td>
 			<td>{{ entregado.entorno }}</td>
 			<td class="col-sm-2">
 				<input type="date" id="dt1" class="form-control input-sm"

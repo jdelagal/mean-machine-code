@@ -286,7 +286,7 @@ module.exports = function(app, express) {
 
 				// set the new catalogo information if it exists in the request
 				if (req.body.servicio) catalogo.servicio = req.body.servicio;
-				
+
 				//if (req.body.proceso) catalogo.proceso = req.body.proceso;
 				//if (req.body.entregable) catalogo.entregable = req.body.entregable;
 				//if (req.body.entorno) catalogo.entorno = req.body.entorno;
@@ -327,6 +327,7 @@ module.exports = function(app, express) {
 			var entregable = new Entregable();		// create a new instance of the Catalogo model
 			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
 			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
+			entregable.fecha_prod = req.body.fecha_prod;  // set the catalogos entorno (comes from the request)
 			//catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
 			//catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
 			//catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
@@ -384,6 +385,9 @@ module.exports = function(app, express) {
 			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
 			entregable.catalogo = req.params.catalogo_id;  // set the catalogos entorno (comes from the request)
 			entregable.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
+			if (req.body.fecha_prod) entregable.fecha_prod = req.body.fecha_prod
+			else entregable.fecha_prod = new Date;
+			
 			//catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
 			//catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
 			//catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)

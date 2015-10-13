@@ -285,7 +285,8 @@ module.exports = function(app, express) {
 				if (err) res.send(err);
 
 				// set the new catalogo information if it exists in the request
-				if (req.body.name) catalogo.servicio = req.body.servicio;
+				if (req.body.servicio) catalogo.servicio = req.body.servicio;
+				
 				//if (req.body.proceso) catalogo.proceso = req.body.proceso;
 				//if (req.body.entregable) catalogo.entregable = req.body.entregable;
 				//if (req.body.entorno) catalogo.entorno = req.body.entorno;

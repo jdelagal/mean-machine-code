@@ -73,6 +73,19 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/entregables/single.html',
 			controller: 'entregableCatalogoCreateController',
 			controllerAs: 'entregable'
+		})		
+						// page to edit a entregable
+		.when('/entregables/editar/:entregable_id', {
+			templateUrl: 'app/views/pages/entregables/single.html',
+			controller: 'entregableEditController',
+			controllerAs: 'entregable'
+		})	
+
+						// page to edit a entregable
+		.when('/entregables/borrar/:entregable_id', {
+			templateUrl: 'app/views/pages/entregables/all.html',
+			controller: 'entregableController',
+			controllerAs: 'entregable'
 		})				
 
 	$locationProvider.html5Mode(true);

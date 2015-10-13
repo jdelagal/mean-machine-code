@@ -382,6 +382,7 @@ module.exports = function(app, express) {
 			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
 			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
 			entregable.catalogo = req.params.catalogo_id;  // set the catalogos entorno (comes from the request)
+			entregable.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
 			//catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
 			//catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
 			//catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
@@ -403,6 +404,42 @@ module.exports = function(app, express) {
 				res.json({ message: 'Entregable creado.' });
 			});
 
+		})
+
+	// on routes that end in /entregables/:entregable_id
+	// ----------------------------------------------------
+	apiRouter.route('/entregables/:entregable_id')
+
+		// update the catalogo with this id
+		.put(function(req, res) {
+			Entregable.findById(req.params.entregable_id, function(err, entregable) {
+
+				if (err) res.send(err);
+
+				// set the new catalogo information if it exists in the request
+				if (req.body.nombre) entregable.nombre = req.body.nombre;
+				if (req.body.entorno) entregable.entorno = req.body.entorno;
+				if (req.body.fecha_prod) entregable.fecha_prod = req.body.fecha_prod;
+
+				// save the entregable
+				entregable.save(function(err) {
+					if (err) res.send(err);
+
+					// return a message
+					res.json({ message: 'Entregable actualizado.' });
+				});
+
+			});
+		})
+
+		// delete the entregable with this id
+		.delete(function(req, res) {
+			Entregable.remove({
+				_id: req.params.entregable_id
+			}, function(err, entregable) {
+				if (err) res.send(err);
+				res.json({ message: 'Borrado con Exito.' });
+			});
 		});
 		
 	// api endpoint to get user information

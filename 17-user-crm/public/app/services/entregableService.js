@@ -10,7 +10,10 @@ angular.module('entregableService', [])
 		return $http.get('/api/entregables/');
 
 	};
-
+	// get a single entregable
+	entregableFactory.get = function(id) {
+		return $http.get('/api/entregables/' + id);
+	};
 	// create a entregables
 	entregableFactory.create = function(id, entregableData) {
 		return $http.post('/api/entregables/'+id, entregableData);
@@ -20,6 +23,16 @@ angular.module('entregableService', [])
 	entregableFactory.getEntregableCatalogo = function(id) {
 		return $http.get('/api/entregables/' + id);
 	};
+
+		// update a entregable
+	entregableFactory.update = function(id, entregableData) {
+		return $http.put('/api/entregables/' + id, entregableData);
+	};
+
+	// delete a entregable
+	entregableFactory.delete = function(id) {
+		return $http.delete('/api/entregables/' + id);
+	};	
 	// return our entire entragableFactory object
 	return entregableFactory;
 

@@ -1,11 +1,5 @@
 <div class="page-header">
 	<h3>Buscar Entregable: </h3><input type="text" ng-model="searchBoxEntregable">
-	<h1>
-		<a href="/entornos/create" class="btn btn-default">
-			<span class="glyphicon glyphicon-collapse-down"></span>
-			Ver Entornos
-		</a>
-	</h1>
 
 </div>
 <div class="jumbotron text-center" ng-show="entregable.entregando">
@@ -16,34 +10,39 @@
 <table class="table table-bordered table-striped" ng-show="entregable.entregables">
 	<thead>
 		<tr>
-			<th>Servicio</th>
 			<th>Nombre</th>
+			<th>Servicio</th>
 			<th>Entorno Actual</th>
-			<!--<th>Fecha Producción</th>-->
-			<th class="col-sm-2"></th>
+			<th>Fecha Producción</th>
+			<th class="col-sm-2">Operación</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="entregado in entregable.entregables | filter: searchBoxEntregable">
-			<td>{{ entregado.catalogo.servicio }}</td>
 			<td>{{ entregado.nombre }}</td>
+			<td>{{ entregado.catalogo.servicio }}</td>
 			<td>{{ entregado.entorno }}</td>
-			<!--<td>{{ servicio.entregable }}</td>
-			<td>{{ servicio.entorno }}</td>
 			<td class="col-sm-2">
 				<input type="date" id="dt1" class="form-control input-sm"
 			       datetimepicker
-			       ng-model="servicio.fecha_prod"
+			       ng-model="entregado.fecha_prod"
 			       placeholder="..."
 			       name="time"
 			       readonly="" 
 			       format-date>	
-			</td>
+			</td>			
+			<!--<td>{{ servicio.entregable }}</td>
+			<td>{{ servicio.entorno }}</td>
+			
 			-->
 			<td class="col-sm-2">
-				<!--<a ng-href="/entregables/{{ entregable._id }}" class="btn btn-primary">Editar</a>-->
-
-			</td>			
+				<a ng-href="/entregables/editar/{{ entregado._id }}" title="Editar" class="btn btn-default">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
+				<a href="#" ng-click="entregable.deleteEntregable(entregado._id)" title="Borrar"class="btn btn-danger">
+					<span class="glyphicon glyphicon-remove-circle"></span>
+				</a>
+			</td>		
 		</tr>
 	</tbody>
 </table>

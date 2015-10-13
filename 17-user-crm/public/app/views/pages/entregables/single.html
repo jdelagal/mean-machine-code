@@ -15,9 +15,28 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Entorno Actual</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="entregable.entregableData.entorno">
+			<select name="multipleSelect" id="multipleSelect" ng-model="entregable.entregableData.entorno" >
+		      <option value="Produccion">Producción</option>
+		      <option value="Preproduccion">Preproducción</option>
+		      <option value="Demo">Demo</option>
+		      <option value="Integracion">Integración</option>
+		      <option value="Laboratorio">Laboratorio</option>
+		      <option value="Desarrollo">Desarrollo</option>
+		    </select>	
 		</div>
 	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Producción</label>
+		<div class="col-sm-6">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="entregable.entregableData.fecha_prod"
+			       placeholder="..."
+			       name="time"
+			       format-date>			
+		</div>
+	</div>	
 	<!--
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Servicio</label>
@@ -111,7 +130,7 @@
 		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="entregable.type == 'create'">Crear Entregable</button>
 		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="entregable.type == 'edit'">Editar Entregable</button>
 				<br>
-				<p><a href="#" ng-click="main.volverCatalogoList()" class="btn btn-sm btn-primary">Volver</a></p>
+				<p><a href="#" ng-click="main.volverEntregableList()" class="btn btn-sm btn-primary">Volver</a></p>
 	</div>
 	</div>
 

@@ -324,34 +324,6 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/entregables')
 
-		.post(function(req, res) {
-			var entregable = new Entregable();		// create a new instance of the Catalogo model
-			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
-			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
-			entregable.fecha_prod = req.body.fecha_prod;  // set the catalogos entorno (comes from the request)
-			//catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
-			//catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
-			//catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
-			//catalogo.fecha_pre = req.body.fecha_pre;  // set the catalogos fecha_pre (comes from the request)
-			//catalogo.fecha_demo = req.body.fecha_demo;  // set the catalogos fecha_demo (comes from the request)
-			//catalogo.fecha_int = req.body.fecha_int;  // set the catalogos fecha_int (comes from the request)
-			//catalogo.fecha_dev = req.body.fecha_dev;  // set the catalogos fecha_dev (comes from the request)
-		
-			entregable.save(function(err) {
-				if (err) {
-					// duplicate entry
-					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El entregable con ese valor ya existe. '});
-					else 
-						return res.send(err);
-				}
-
-				// return a message
-				res.json({ message: 'Entregable creado.' });
-			});
-
-		})
-
 		.get(function(req, res) {	
 			
 			Entregable.find({}, function(err, entregables) {
@@ -468,6 +440,17 @@ module.exports = function(app, express) {
 	// on routes that end in /consumidores/:catalogo_id
 	// ----------------------------------------------------
 	apiRouter.route('/consumidores/:catalogo_id')
+				// get the consumidor with that id
+		.get(function(req, res) {
+			Consumidor.findById(req.params.catalogo_id, function(err, consumidor) {
+				Catalogo.populate(consumidor, {path: 'catalogo'})
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(consumidor);
+			});
+		})
+
 		.post(function(req, res) {
 			var consumidor = new Consumidor();		// create a new instance of the Catalogo model
 			consumidor.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
@@ -486,6 +469,40 @@ module.exports = function(app, express) {
 				res.json({ message: 'Consumidor creado.' });
 			});
 
+		});
+
+	// on routes that end in /entregables/:entregable_id
+	// ----------------------------------------------------
+	apiRouter.route('/consumidores/:consumidor_id')
+
+				// update the catalogo with this id
+		.put(function(req, res) {
+			Consumidor.findById(req.params.consumidor_id, function(err, consumidor) {
+
+				if (err) res.send(err);
+
+				// set the new catalogo information if it exists in the request
+				if (req.body.nombre) consumidor.nombre = req.body.nombre;
+
+				// save the consumidor
+				consumidor.save(function(err) {
+					if (err) res.send(err);
+
+					// return a message
+					res.json({ message: 'Consumidor Actualizado.' });
+				});
+
+			});
+		})
+
+		// delete the consumidor with this id
+		.delete(function(req, res) {
+			Consumidor.remove({
+				_id: req.params.consumidor_id
+			}, function(err, consumidor) {
+				if (err) res.send(err);
+				res.json({ message: 'Borrado con Exito.' });
+			});
 		});
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {

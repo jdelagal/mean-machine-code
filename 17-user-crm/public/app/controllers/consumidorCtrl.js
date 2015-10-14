@@ -85,12 +85,12 @@ angular.module('consumidorCtrl', ['consumidorService'])
 		vm.message = '';
 
 		// call the entregableService function to update 
-		Consumidor.update($routeParams.consumidor_id, vm.entregableData)
+		Consumidor.update($routeParams.consumidor_id, vm.consumidorData)
 			.success(function(data) {
 				vm.entregando = false;
 
 				// clear the form
-				vm.entregableData = {};
+				vm.consumidorData = {};
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;

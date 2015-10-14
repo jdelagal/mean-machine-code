@@ -102,6 +102,19 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'consumidor'
 		})	
 
+		.when('/consumidores/editar/:consumidor_id', {
+			templateUrl: 'app/views/pages/consumidores/single.html',
+			controller: 'consumidorEditController',
+			controllerAs: 'consumidor'
+		})		
+
+						// page to edit a entregable
+		.when('/consumidores/borrar/:consumidor_id', {
+			templateUrl: 'app/views/pages/consumidores/all.html',
+			controller: 'consumidorController',
+			controllerAs: 'consumidor'
+		})				
+
 	$locationProvider.html5Mode(true);
 
 });

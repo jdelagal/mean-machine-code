@@ -56,7 +56,12 @@ angular.module('mainCtrl', [])
 
 	vm.volverEntregableList = function() {
 		$location.path('/entregables');
-	};	
+	};
+
+	vm.volverConsumidorList = function() {
+		$location.path('/consumidores');
+	};
+		
 })
 
 .directive("formatDate", function(){

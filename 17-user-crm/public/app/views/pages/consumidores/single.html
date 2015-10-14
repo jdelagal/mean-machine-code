@@ -1,0 +1,35 @@
+<div class="page-header">
+	<h3 ng-if="consumidor.type == 'create'">Dar de Alta Consumidor</h3>
+	<h3 ng-if="consumidor.type == 'edit'">Editar Consumidor</h3>
+</div>
+
+<form class="form-horizontal" ng-submit="consumidor.saveConsumidor()">
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Consumidor</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="consumidor.consumidorData.nombre">
+		</div>
+	</div>
+
+	
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="consumidor.type == 'create'">Crear Consumidor</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="consumidor.type == 'edit'">Editar Consumidor</button>
+				<br>
+				<p><a href="#" ng-click="main.volverConsumidorList()" class="btn btn-sm btn-primary">Volver</a></p>
+	</div>
+	</div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+
+		<div class="alert alert-info">
+			{{ user.message }}
+		</div>
+
+	</div>
+</div>

@@ -2,6 +2,7 @@ var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
 var Catalogo       = require('../models/catalogo');
 var Entregable       = require('../models/entregable');
+var Consumidor       = require('../models/consumidor');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -431,7 +432,7 @@ module.exports = function(app, express) {
 					if (err) res.send(err);
 
 					// return a message
-					res.json({ message: 'Entregable actualizado.' });
+					res.json({ message: 'Entregable Actualizado.' });
 				});
 
 			});
@@ -447,6 +448,45 @@ module.exports = function(app, express) {
 			});
 		});
 		
+
+	// on routes that end in /consumidores
+	// ----------------------------------------------------
+	apiRouter.route('/consumidores')
+
+		.get(function(req, res) {	
+			
+			Consumidor.find({}, function(err, consumidores) {
+				Catalogo.populate(consumidores, {path: "catalogo"}, function(err, consumidores){
+					if (err) res.send(err);
+
+					// return the entregables
+					res.json(consumidores);
+					//console.log ("11111111111111 " + consumidores);
+				});
+			});
+		});
+	// on routes that end in /consumidores/:catalogo_id
+	// ----------------------------------------------------
+	apiRouter.route('/consumidores/:catalogo_id')
+		.post(function(req, res) {
+			var consumidor = new Consumidor();		// create a new instance of the Catalogo model
+			consumidor.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
+			consumidor.catalogo = req.params.catalogo_id;  // set the catalogos entorno (comes from the request)
+
+			consumidor.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El consumidor con ese valor ya existe. '});
+					else 
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'Consumidor creado.' });
+			});
+
+		});
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);

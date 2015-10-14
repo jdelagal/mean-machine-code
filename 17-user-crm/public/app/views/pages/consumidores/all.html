@@ -1,0 +1,36 @@
+<div class="page-header">
+	<h3>Buscar Consumidor: </h3><input type="text" size="75" ng-model="searchBoxConsumidor">
+
+</div>
+<div class="jumbotron text-center" ng-show="consumidor.consumiendo">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Cargando Consumidor...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="consumidor.consumidores">
+	<thead>
+		<tr>
+			<th>Servicio</th>
+			<th>Consumidor</th>
+			<th class="col-sm-2">Operación</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="consumido in consumidor.consumidores | filter: searchBoxConsumidor">
+			<td>{{ consumido.catalogo.servicio }}</td>
+			<td>{{ consumido.nombre }}</td>
+			<td class="col-sm-2">
+				<a ng-href="/consumidores/editar/{{ consumido._id }}" title="Editar" class="btn btn-default">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
+				<a href="#" ng-click="consumidor.deleteConsumidor(consumido._id)" title="Borrar"class="btn btn-danger">
+					<span class="glyphicon glyphicon-remove-circle"></span>
+				</a>
+			</td>		
+		</tr>
+	</tbody>
+</table>
+
+<div>
+		<p><a href="#" ng-click="main.volverCatalogoList()" class="btn btn-sm btn-primary">Volver</a></p>
+</div>

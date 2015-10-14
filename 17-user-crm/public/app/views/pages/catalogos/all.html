@@ -9,6 +9,10 @@
 			<span class="glyphicon glyphicon-collapse-down"></span>
 			Vista Entregables
 		</a>
+		<a href="/consumidores" class="btn btn-default">
+			<span class="glyphicon glyphicon-collapse-down"></span>
+			Vista Consumidores
+		</a>		
 	</h1>
 </div>
 
@@ -52,7 +56,10 @@
 			<td class="col-sm-2">
 				<a ng-href="/entregables/{{ servicio._id }}" title="Dar de Alta Entregable" class="btn btn-default">
 					<span class="glyphicon glyphicon-plus"></span>
-				</a>			
+				</a>	
+				<a ng-href="/consumidores/{{ servicio._id }}" title="Dar de Alta Consumidor" class="btn btn-default">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>						
 				<a ng-href="/catalogos/{{ servicio._id }}" title="Editar Catálogo" class="btn btn-default">
 					<span class="glyphicon glyphicon-edit"></span>
 				</a>

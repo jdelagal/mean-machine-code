@@ -86,7 +86,21 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/entregables/all.html',
 			controller: 'entregableController',
 			controllerAs: 'entregable'
-		})				
+		})		
+
+						// page to edit a catalogo
+		.when('/consumidores/:catalogo_id', {
+			templateUrl: 'app/views/pages/consumidores/single.html',
+			controller: 'consumidorCatalogoCreateController',
+			controllerAs: 'consumidor'
+		})	
+
+				// show all consumidores
+		.when('/consumidores', {
+			templateUrl: 'app/views/pages/consumidores/all.html',
+			controller: 'consumidorController',
+			controllerAs: 'consumidor'
+		})	
 
 	$locationProvider.html5Mode(true);
 

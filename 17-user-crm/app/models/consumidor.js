@@ -7,7 +7,6 @@ var Catalogo = mongoose.model('Catalogo');
 var ConsumidorSchema   = new Schema({
 	nombre: { type: String, required: true, index: { unique: true }},
 	//proceso: String,
-	canal: String,
 	catalogo: { type: Schema.ObjectId, ref: 'Catalogo' } 
 });
 

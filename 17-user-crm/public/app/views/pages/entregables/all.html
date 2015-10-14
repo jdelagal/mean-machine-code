@@ -20,7 +20,7 @@
 	<tbody>
 		<tr ng-repeat="entregado in entregable.entregables | filter: searchBoxEntregable">
 			<td>{{ entregado.catalogo.servicio }}</td>
-			<td>{{ entregado.catalogo.nombre }}</td>
+			<td>{{ entregado.nombre }}</td>
 			<td>{{ entregado.entorno }}</td>
 			<td class="col-sm-2">
 				<input type="date" id="dt1" class="form-control input-sm"

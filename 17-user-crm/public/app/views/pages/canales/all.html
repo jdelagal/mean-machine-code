@@ -30,8 +30,8 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="canalidado in canal.canales | filter: searchBoxCanal">
+			<td>{{ canalidado.consumidor.nombre  }}</td>
 			<td>{{ canalidado.nombre }}</td>
-			<td>{{ canalidado.consumidor.nombre }}</td>
 	
 			<!--<td>{{ servicio.entregable }}</td>
 			<td>{{ servicio.entorno }}</td>

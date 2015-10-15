@@ -3,6 +3,7 @@ var User       = require('../models/user');
 var Catalogo       = require('../models/catalogo');
 var Entregable       = require('../models/entregable');
 var Consumidor       = require('../models/consumidor');
+var Canal       = require('../models/canal');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -504,6 +505,47 @@ module.exports = function(app, express) {
 				res.json({ message: 'Borrado con Exito.' });
 			});
 		});
+
+		// on routes that end in /canales
+	// ----------------------------------------------------
+	apiRouter.route('/canales')
+
+		.get(function(req, res) {	
+			
+			Canal.find({}, function(err, canales) {
+				Consumidor.populate(canales, {path: "consumidor"}, function(err, canales){
+					if (err) res.send(err);
+
+					// return the canales
+					res.json(canales);
+					//console.log ("11111111111111 " + canales);
+				});
+			});
+		});
+
+	// on routes that end in /canales/:consumidor_id
+	// ----------------------------------------------------
+	apiRouter.route('/canales/:consumidor_id')
+
+		.post(function(req, res) {
+			var canal = new Canal();		// create a new instance of the Catalogo model
+			canal.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
+			canal.consumidor = req.params.consumidor_id;  // set the catalogos entorno (comes from the request)
+
+			canal.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El Canal con ese valor ya existe. '});
+					else 
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'Canal creado.' });
+			});
+
+		});		
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);

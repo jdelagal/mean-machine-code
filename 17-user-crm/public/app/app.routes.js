@@ -55,7 +55,7 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'catalogo'
 		})
 
-				// page to edit a catalogo
+		// page to edit a catalogo
 		.when('/catalogos/:catalogo_id', {
 			templateUrl: 'app/views/pages/catalogos/single.html',
 			controller: 'catalogoEditController',
@@ -74,28 +74,29 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'entregableCatalogoCreateController',
 			controllerAs: 'entregable'
 		})		
-						// page to edit a entregable
+		
+		// page to edit a entregable
 		.when('/entregables/editar/:entregable_id', {
 			templateUrl: 'app/views/pages/entregables/single.html',
 			controller: 'entregableEditController',
 			controllerAs: 'entregable'
 		})	
 
-						// page to edit a entregable
+		// page to edit a entregable
 		.when('/entregables/borrar/:entregable_id', {
 			templateUrl: 'app/views/pages/entregables/all.html',
 			controller: 'entregableController',
 			controllerAs: 'entregable'
 		})		
 
-						// page to edit a catalogo
+		// page to edit a consumidor
 		.when('/consumidores/:catalogo_id', {
 			templateUrl: 'app/views/pages/consumidores/single.html',
 			controller: 'consumidorCatalogoCreateController',
 			controllerAs: 'consumidor'
 		})	
 
-				// show all consumidores
+		// show all consumidores
 		.when('/consumidores', {
 			templateUrl: 'app/views/pages/consumidores/all.html',
 			controller: 'consumidorController',
@@ -108,12 +109,25 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'consumidor'
 		})		
 
-						// page to edit a entregable
+		// page to edit a consumidor
 		.when('/consumidores/borrar/:consumidor_id', {
 			templateUrl: 'app/views/pages/consumidores/all.html',
 			controller: 'consumidorController',
 			controllerAs: 'consumidor'
-		})				
+		})	
+		// show all canales
+		.when('/canales', {
+			templateUrl: 'app/views/pages/canales/all.html',
+			controller: 'canalController',
+			controllerAs: 'canal'
+		})	
+
+		// page to add a canal
+		.when('/canales/:consumidor_id', {
+			templateUrl: 'app/views/pages/canales/single.html',
+			controller: 'canalConsumidorCreateController',
+			controllerAs: 'canal'
+		})						
 
 	$locationProvider.html5Mode(true);
 

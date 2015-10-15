@@ -1,0 +1,40 @@
+<div class="page-header">
+	<h3 ng-if="canal.type == 'create'">Dar de Alta Canal</h3>
+	<h3 ng-if="canal.type == 'edit'">Editar Canal</h3>
+</div>
+
+<form class="form-horizontal" ng-submit="canal.saveCanal()">
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Canal</label>
+		<div class="col-sm-6">
+			<select name="multipleSelect" id="multipleSelect" ng-model="canal.canalData.nombre" >
+		      <option value="Internet">Internet</option>
+		      <option value="Intranet">Intranet</option>
+		      <option value="Interno">Interno</option>
+		      <option value="Intranet Sanitaria">Intranet Sanitaria</option>
+		    </select>	
+		</div>
+	</div>
+
+	
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="canal.type == 'create'">Crear Canal</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="canal.type == 'edit'">Editar Canal</button>
+				<br>
+				<p><a href="#" ng-click="main.volverCanalList()" class="btn btn-sm btn-primary">Volver</a></p>
+	</div>
+	</div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+
+		<div class="alert alert-info">
+			{{ user.message }}
+		</div>
+
+	</div>
+</div>

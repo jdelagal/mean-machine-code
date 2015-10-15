@@ -33,6 +33,9 @@
 			<td>{{ consumido.catalogo.servicio }}</td>
 			<td>{{ consumido.nombre }}</td>
 			<td class="col-sm-2">
+				<a ng-href="/canales/{{ consumido._id }}" title="Dar de Alta Canal" class="btn btn-default">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>	
 				<a ng-href="/consumidores/editar/{{ consumido._id }}" title="Editar" class="btn btn-default">
 					<span class="glyphicon glyphicon-edit"></span>
 				</a>

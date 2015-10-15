@@ -61,6 +61,10 @@ angular.module('mainCtrl', [])
 	vm.volverConsumidorList = function() {
 		$location.path('/consumidores');
 	};
+
+	vm.volverCanalList = function() {
+		$location.path('/canales');
+	};	
 		
 })
 

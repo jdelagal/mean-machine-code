@@ -1,0 +1,54 @@
+<div class="page-header">
+	<h3>Buscar Canal: </h3><input type="text" size="75" ng-model="searchBoxCanal">
+	<h1>
+		<a href="/catalogos" class="btn btn-default">
+			<span class="glyphicon glyphicon-collapse-down"></span>
+			Vista Catalogos
+		</a>
+		<a href="/entregables" class="btn btn-default">
+			<span class="glyphicon glyphicon-collapse-down"></span>
+			Vista Entregables
+		</a>
+		<a href="/consumidores" class="btn btn-default">
+			<span class="glyphicon glyphicon-collapse-down"></span>
+			Vista Consumidores
+		</a>		
+	</h1>
+</div>
+<div class="jumbotron text-center" ng-show="canal.canalizando">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Cargando Canal...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="canal.canales">
+	<thead>
+		<tr>
+			<th>Consumidor</th>
+			<th>Canal</th>
+			<th class="col-sm-2">Operación</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="canalidado in canal.canales | filter: searchBoxCanal">
+			<td>{{ canalidado.nombre }}</td>
+			<td>{{ canalidado.consumidor.nombre }}</td>
+	
+			<!--<td>{{ servicio.entregable }}</td>
+			<td>{{ servicio.entorno }}</td>
+			
+			-->
+			<td class="col-sm-2">
+				<a ng-href="/canales/editar/{{ canal._id }}" title="Editar" class="btn btn-default">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
+				<a href="#" ng-click="canales.deleteCanal(canal._id)" title="Borrar"class="btn btn-danger">
+					<span class="glyphicon glyphicon-remove-circle"></span>
+				</a>
+			</td>		
+		</tr>
+	</tbody>
+</table>
+
+<div>
+		<p><a href="#" ng-click="main.volverCatalogoList()" class="btn btn-sm btn-primary">Volver</a></p>
+</div>

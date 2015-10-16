@@ -527,6 +527,15 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/canales/:consumidor_id')
 
+		.get(function(req, res) {
+			Canal.findById(req.params.consumidor_id, function(err, canal) {
+				Consumidor.populate(canal, {path: 'consumidor'})
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(canal);
+			});
+		})
 		.post(function(req, res) {
 			var canal = new Canal();		// create a new instance of the Catalogo model
 			canal.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
@@ -545,6 +554,40 @@ module.exports = function(app, express) {
 				res.json({ message: 'Canal creado.' });
 			});
 
+		});		
+
+	// on routes that end in /canales/:canal_id
+	// ----------------------------------------------------
+	apiRouter.route('/canales/:canal_id')
+
+				// update the catalogo with this id
+		.put(function(req, res) {
+			Canal.findById(req.params.canal_id, function(err, canal) {
+
+				if (err) res.send(err);
+
+				// set the new canal information if it exists in the request
+				if (req.body.nombre) canal.nombre = req.body.nombre;
+				//console.log ("11111111111111 " + canal);
+				// save the canal
+				canal.save(function(err) {
+					if (err) res.send(err);
+
+					// return a message
+					res.json({ message: 'Canal Actualizado.' });
+				});
+
+			});
+		})
+
+		// delete the canal with this id
+		.delete(function(req, res) {
+			Canal.remove({
+				_id: req.params.canal_id
+			}, function(err, canal) {
+				if (err) res.send(err);
+				res.json({ message: 'Borrado con Exito.' });
+			});
 		});		
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {

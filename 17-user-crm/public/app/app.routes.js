@@ -127,7 +127,20 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/canales/single.html',
 			controller: 'canalConsumidorCreateController',
 			controllerAs: 'canal'
-		})						
+		})	
+
+		.when('/canales/editar/:canal_id', {
+			templateUrl: 'app/views/pages/canales/single.html',
+			controller: 'canalEditController',
+			controllerAs: 'canal'
+		})		
+
+		// page to edit a canal
+		.when('/canales/borrar/:canal_id', {
+			templateUrl: 'app/views/pages/canales/all.html',
+			controller: 'canalController',
+			controllerAs: 'canal'
+		})									
 
 	$locationProvider.html5Mode(true);
 

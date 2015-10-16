@@ -140,6 +140,13 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/canales/all.html',
 			controller: 'canalController',
 			controllerAs: 'canal'
+		})		
+
+		// show all entorno
+		.when('/entornos', {
+			templateUrl: 'app/views/pages/entornos/all.html',
+			controller: 'entornoController',
+			controllerAs: 'entorno'
 		})									
 
 	$locationProvider.html5Mode(true);

@@ -4,6 +4,7 @@ var Catalogo       = require('../models/catalogo');
 var Entregable       = require('../models/entregable');
 var Consumidor       = require('../models/consumidor');
 var Canal       = require('../models/canal');
+var Entorno       = require('../models/entorno');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -587,6 +588,23 @@ module.exports = function(app, express) {
 			}, function(err, canal) {
 				if (err) res.send(err);
 				res.json({ message: 'Borrado con Exito.' });
+			});
+		});		
+
+	// on routes that end in /entornos
+	// ----------------------------------------------------
+	apiRouter.route('/entornos')
+
+		.get(function(req, res) {	
+			
+			Entorno.find({}, function(err, entornos) {
+				Entorno.populate(entornos, {path: "entregable"}, function(err, entornos){
+					if (err) res.send(err);
+
+					// return the entornos
+					res.json(entornos);
+					//console.log ("11111111111111 " + entornos);
+				});
 			});
 		});		
 	// api endpoint to get user information

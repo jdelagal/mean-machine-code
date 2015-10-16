@@ -1,0 +1,148 @@
+<div class="page-header">
+	<h3 ng-if="entregable.type == 'create'">Dar de Alta Entregable</h3>
+	<h3 ng-if="entregable.type == 'edit'">Editar Entregable</h3>
+</div>
+
+<form class="form-horizontal" ng-submit="entregable.saveEntregable()">
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Entregable</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="entregable.entregableData.nombre">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Entorno Actual</label>
+		<div class="col-sm-6">
+			<select name="multipleSelect" id="multipleSelect" ng-model="entregable.entregableData.entorno" >
+		      <option value="Produccion">Producción</option>
+		      <option value="Preproduccion">Preproducción</option>
+		      <option value="Demo">Demo</option>
+		      <option value="Integracion">Integración</option>
+		      <option value="Laboratorio">Laboratorio</option>
+		      <option value="Desarrollo">Desarrollo</option>
+		    </select>	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Producción</label>
+		<div class="col-sm-6">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="entregable.entregableData.fecha_prod"
+			       placeholder="..."
+			       name="time"
+			       format-date>			
+		</div>
+		
+	</div>	
+	<!--
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Servicio</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="entregable.entregableData.servicio">
+		</div>
+	</div>	
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Entregable</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="catalogo.catalogoData.entregable">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Entorno</label>
+		<div class="col-sm-6">
+		 	<select class="selectpicker" ng-model="catalogo.catalogoData.entorno" >
+		      <option value="Producción">Producción</option>
+		      <option value="Preproducción">Preproducción</option>
+		      <option value="Demo">Demo</option>
+		      <option value="Integración">Integración</option>
+		      <option value="Desarrollo">Desarrollo</option>
+		    </select>	
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Producción</label>
+		<div class="col-sm-6">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_prod"
+			       placeholder="..."
+			       name="time"
+			       format-date>			
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Preproducción</label>
+		<div class="col-sm-6">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_pre"
+			       placeholder="..."
+			       name="time"
+			       format-date>				
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Demo</label>
+		<div class="col-sm-6">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_demo"
+			       placeholder="..."
+			       name="time"
+			       format-date>				
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Integracion</label>
+		<div class="col-sm-6">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_int"
+			       placeholder="..."
+			       name="time"
+			       format-date>					
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Fecha Desarrollo</label>
+		<div class="col-sm-6">
+			<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="catalogo.catalogoData.fecha_dev"
+			       placeholder="..."
+			       name="time"
+			       format-date>					
+		</div>
+	</div>		
+	-->			
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="entregable.type == 'create'">Crear Entregable</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="entregable.type == 'edit'">Editar Entregable</button>
+				<br>
+				<p><a href="#" ng-click="main.volverEntregableList()" class="btn btn-sm btn-primary">Volver</a></p>
+	</div>
+	</div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+
+		<div class="alert alert-info">
+			{{ user.message }}
+		</div>
+
+	</div>
+</div>

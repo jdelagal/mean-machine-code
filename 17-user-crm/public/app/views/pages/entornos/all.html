@@ -1,40 +1,36 @@
 <div class="page-header">
-	<h3>Buscar Entregable: </h3><input type="text" size="75" ng-model="searchBoxEntregable">
+	<h3>Buscar Entorno: </h3><input type="text" size="75" ng-model="searchBoxEntorno">
 	<h1>
 		<a href="/catalogos" class="btn btn-default">
 			<span class="glyphicon glyphicon-collapse-down"></span>
 			Vista Catalogos
 		</a>
-		<a href="/entornos" class="btn btn-default">
+		<a href="/entregables" class="btn btn-default">
 			<span class="glyphicon glyphicon-collapse-down"></span>
-			Vista Entornos
+			Vista Entregables
 		</a>
 	</h1>
 </div>
 <div class="jumbotron text-center" ng-show="entregable.entregando">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
-	<p>Cargando Entregable...</p>
+	<p>Cargando Entorno...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="entregable.entregables">
+<table class="table table-bordered table-striped" ng-show="entorno.entornos">
 	<thead>
 		<tr>
-			<th>Servicio</th>
 			<th>Entregable</th>
-			<th>Entorno Actual</th>
-			<th>Fecha Producción</th>
+			<th>Fecha Preproducción</th>
 			<th class="col-sm-2">Operación</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="entregado in entregable.entregables | filter: searchBoxEntregable">
-			<td>{{ entregado.catalogo.servicio }}</td>
-			<td>{{ entregado.nombre }}</td>
-			<td>{{ entregado.entorno }}</td>
+		<tr ng-repeat="desplegado in entorno.entornos | filter: searchBoxEntorno">
+			<td>{{ desplegado.entregable.nombre }}</td>
 			<td class="col-sm-2">
 				<input type="date" id="dt1" class="form-control input-sm"
 			       datetimepicker
-			       ng-model="entregado.fecha_prod"
+			       ng-model="desplegado.fecha_pre"
 			       placeholder="..."
 			       name="time"
 			       readonly="true" 
@@ -45,10 +41,10 @@
 			
 			-->
 			<td class="col-sm-2">
-				<a ng-href="/entregables/editar/{{ entregado._id }}" title="Editar" class="btn btn-default">
+				<a ng-href="/entornos/editar/{{ desplegado._id }}" title="Editar" class="btn btn-default">
 					<span class="glyphicon glyphicon-edit"></span>
 				</a>
-				<a href="#" ng-click="entregable.deleteEntregable(entregado._id)" title="Borrar"class="btn btn-danger">
+				<a href="#" ng-click="entregable.deleteEntorno(desplegado._id)" title="Borrar"class="btn btn-danger">
 					<span class="glyphicon glyphicon-remove-circle"></span>
 				</a>
 			</td>		

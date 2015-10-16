@@ -8,10 +8,6 @@ var EntregableSchema   = new Schema({
 	nombre: { type: String, required: true, index: { unique: true }},
 	entorno: String,
 	fecha_prod: Date,
-	fecha_pre: Date,
-	fecha_demo: Date,
-	fecha_int: Date,
-	fecha_dev: Date,
 	catalogo: { type: Schema.ObjectId, ref: 'Catalogo' } 
 });
 

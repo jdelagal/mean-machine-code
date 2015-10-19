@@ -8,7 +8,7 @@ angular.module('catalogoCtrl', ['catalogoService','ngTable'])
 	vm.evaluando = true;
 	var params = {
 		page: 1,
-	    count: 4
+	    count: 9
 	}
 	// grab all the users at page load
 	Catalogo.all()
@@ -22,9 +22,10 @@ angular.module('catalogoCtrl', ['catalogoService','ngTable'])
 			//por ello se descarga en vm.catalogos pues entra
 			//en contexto el otro data, $data del paginado
 			vm.catalogos = data;
+			var todos =vm.catalogos.size;
 			var settings = {
 	            total: vm.catalogos.length, // resultados en total,
-	            counts: [5, 10, 15],
+	            counts: [10, 100, 1000],
 	            getData: function($defer, params) {
 	        	    $defer.resolve(vm.catalogos.slice((params.page() - 1) * params.count(), params.page() * params.count()));
 	            }

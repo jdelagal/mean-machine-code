@@ -16,7 +16,7 @@
 	<p>Cargando Entregable...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="entregable.entregables">
+<table ng-table="tableParams" class="table table-bordered table-striped" ng-show="entregable.entregables">
 	<thead>
 		<tr>
 			<th>Servicio</th>
@@ -27,7 +27,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="entregado in entregable.entregables | filter: searchBoxEntregable">
+		<tr ng-repeat="entregado in $data | filter: searchBoxEntregable">
 			<td>{{ entregado.catalogo.servicio }}</td>
 			<td>{{ entregado.nombre }}</td>
 			<td>{{ entregado.entorno }}</td>

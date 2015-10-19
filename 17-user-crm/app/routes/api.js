@@ -606,6 +606,89 @@ module.exports = function(app, express) {
 					//console.log ("11111111111111 " + entornos);
 				});
 			});
+		});	
+
+	// on routes that end in /entornos/:entregable_id
+	// ----------------------------------------------------
+	apiRouter.route('/entornos/:entregable_id')
+
+		// get the entregable with that id
+		.get(function(req, res) {
+			Entorno.findById(req.params.entregable_id, function(err, entorno) {
+				Entregable.populate(entorno, {path: 'entregable'})
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(entorno);
+
+			});
+		})
+
+		.post(function(req, res) {
+			var entorno = new Entorno();		// create a new instance of the entorno model
+			entorno.entregable = req.params.entregable_id;  // set the catalogos entorno (comes from the request)
+			if (req.body.fecha_pre) entorno.fecha_pre = req.body.fecha_pre
+			else entorno.fecha_pre = new Date;
+			if (req.body.fecha_demo) entorno.fecha_demo = req.body.fecha_demo
+			else entorno.fecha_demo = new Date;
+			if (req.body.fecha_int) entorno.fecha_int = req.body.fecha_int
+			else entorno.fecha_int = new Date;
+			if (req.body.fecha_lab) entorno.fecha_lab = req.body.fecha_lab
+			else entorno.fecha_lab = new Date;
+			if (req.body.fecha_dev) entorno.fecha_dev = req.body.fecha_dev
+			else entorno.fecha_dev = new Date;
+			
+			entorno.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El entorno con ese valor ya existe. '});
+					else 
+						//console.log ("11111111111111 " + entorno);
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'Entorno creado.' });
+			});
+
+		})
+
+	// on routes that end in /entornos/:entorno_id
+	// ----------------------------------------------------
+	apiRouter.route('/entornos/:entorno_id')
+
+				// update the catalogo with this id
+		.put(function(req, res) {
+			Entorno.findById(req.params.entorno_id, function(err, entorno) {
+
+				if (err) res.send(err);
+				entorno.fecha_pre = req.body.fecha_pre;
+				entorno.fecha_demo = req.body.fecha_demo;
+				entorno.fecha_int = req.body.fecha_int;
+				entorno.fecha_lab = req.body.fecha_lab;
+				entorno.fecha_dev = req.body.fecha_dev;
+				// save the entorno
+				entorno.save(function(err) {
+					if (err) res.send(err);
+
+					// return a message
+					res.json({ message: 'Entorno Actualizado.' });
+					//console.log ("11111111111111 " + entorno);
+				});
+
+			});
+		})
+
+		// delete the entorno with this id
+		.delete(function(req, res) {
+			console.log ("11111111111111 " + req.params.entorno_id);
+			Entorno.remove({
+				_id: req.params.entorno_id
+			}, function(err, entorno) {
+				if (err) res.send(err);
+				res.json({ message: 'Borrado con Exito.' });
+			});
 		});		
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {

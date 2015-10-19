@@ -33,7 +33,7 @@ angular.module('entornoCtrl', ['entornoService'])
 						// when all the users come back, remove the processing variable
 						vm.desplegando = false;
 
-						// bind the entornos that come back to vm.entregables
+						// bind the entornos that come back to vm.entornos
 						vm.entornos = data;
 					});
 		});

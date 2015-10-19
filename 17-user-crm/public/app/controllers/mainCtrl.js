@@ -65,7 +65,11 @@ angular.module('mainCtrl', [])
 	vm.volverCanalList = function() {
 		$location.path('/canales');
 	};	
-		
+
+	vm.volverEntornoList = function() {
+		$location.path('/entornos');
+	};	
+			
 })
 
 .directive("formatDate", function(){

@@ -147,7 +147,26 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/entornos/all.html',
 			controller: 'entornoController',
 			controllerAs: 'entorno'
-		})									
+		})		
+
+		.when('/entornos/:entregable_id', {
+			templateUrl: 'app/views/pages/entornos/single.html',
+			controller: 'entornoEntregableCreateController',
+			controllerAs: 'entorno'
+		})	
+
+		.when('/entornos/editar/:entorno_id', {
+			templateUrl: 'app/views/pages/entornos/single.html',
+			controller: 'entornoEditController',
+			controllerAs: 'entorno'
+		})		
+
+		// page to edit a entorno
+		.when('/entornos/borrar/:entorno_id', {
+			templateUrl: 'app/views/pages/entornos/all.html',
+			controller: 'entornoController',
+			controllerAs: 'entorno'
+		})	
 
 	$locationProvider.html5Mode(true);
 

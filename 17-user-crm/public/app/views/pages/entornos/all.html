@@ -21,6 +21,10 @@
 		<tr>
 			<th>Entregable</th>
 			<th>Fecha Preproducción</th>
+			<th>Fecha Demo</th>
+			<th>Fecha Integración</th>
+			<th>Fecha Laboratorio</th>
+			<th>Fecha Desarrollo</th>
 			<th class="col-sm-2">Operación</th>
 		</tr>
 	</thead>
@@ -35,7 +39,43 @@
 			       name="time"
 			       readonly="true" 
 			       format-date>	
-			</td>			
+			</td>	
+			<td class="col-sm-2">
+				<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="desplegado.fecha_demo"
+			       placeholder="..."
+			       name="time"
+			       readonly="true" 
+			       format-date>	
+			</td>
+			<td class="col-sm-2">
+				<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="desplegado.fecha_int"
+			       placeholder="..."
+			       name="time"
+			       readonly="true" 
+			       format-date>	
+			</td>
+			<td class="col-sm-2">
+				<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="desplegado.fecha_lab"
+			       placeholder="..."
+			       name="time"
+			       readonly="true" 
+			       format-date>	
+			</td>						
+			<td class="col-sm-2">
+				<input type="date" id="dt1" class="form-control input-sm"
+			       datetimepicker
+			       ng-model="desplegado.fecha_dev"
+			       placeholder="..."
+			       name="time"
+			       readonly="true" 
+			       format-date>	
+			</td>
 			<!--<td>{{ servicio.entregable }}</td>
 			<td>{{ servicio.entorno }}</td>
 			
@@ -44,7 +84,7 @@
 				<a ng-href="/entornos/editar/{{ desplegado._id }}" title="Editar" class="btn btn-default">
 					<span class="glyphicon glyphicon-edit"></span>
 				</a>
-				<a href="#" ng-click="entregable.deleteEntorno(desplegado._id)" title="Borrar"class="btn btn-danger">
+				<a href="#" ng-click="entorno.deleteEntorno(desplegado._id)" title="Borrar"class="btn btn-danger">
 					<span class="glyphicon glyphicon-remove-circle"></span>
 				</a>
 			</td>		

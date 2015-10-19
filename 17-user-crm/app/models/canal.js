@@ -5,7 +5,7 @@ var Consumidor = mongoose.model('Consumidor');
 
 // Entragabnle schema 
 var CanalSchema   = new Schema({
-	nombre: { type: String, required: true, index: { unique: true }},
+	nombre: { type: String},
 	//proceso: String,
 	consumidor: { type: Schema.ObjectId, ref: 'Consumidor' } 
 });

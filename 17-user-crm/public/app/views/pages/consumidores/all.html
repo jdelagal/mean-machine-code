@@ -16,7 +16,7 @@
 	<p>Cargando Consumidor...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="consumidor.consumidores">
+<table ng-table="tableParams" class="table table-bordered table-striped" ng-show="consumidor.consumidores">
 	<thead>
 		<tr>
 			<th>Servicio</th>
@@ -25,7 +25,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="consumido in consumidor.consumidores | filter: searchBoxConsumidor">
+		<tr ng-repeat="consumido in $data  | filter: searchBoxConsumidor">
 			<td>{{ consumido.catalogo.servicio }}</td>
 			<td>{{ consumido.nombre }}</td>
 			<td class="col-sm-2">

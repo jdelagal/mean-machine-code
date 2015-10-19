@@ -11,7 +11,7 @@ angular.module('entregableCtrl', ['entregableService','ngTable'])
 		page: 1,
 	    count: 9
 	}
-	// grab all the users at page load
+	// grab all the entregable at page load
 	Entregable.all()
 		.success(function(data) {
 			// when all the users come back, remove the processing variable
@@ -41,13 +41,24 @@ angular.module('entregableCtrl', ['entregableService','ngTable'])
 				// get all users to update the table
 				// you can also set up your api 
 				// to return the list of catalogos with the delete call
+				// grab all the entregable at page load
 				Entregable.all()
 					.success(function(data) {
 						// when all the users come back, remove the processing variable
 						vm.entregando = false;
-
-						// bind the entregables that come back to vm.entregables
+						// bind the catalogos that come back to vm.catalogos
+						//este data es diferente del data de la paginacion
+						//por ello se descarga en vm.catalogos pues entra
+						//en contexto el otro data, $data del paginado
 						vm.entregables = data;
+						var settings = {
+				            total: vm.entregables.length, // resultados en total,
+				            counts: [10, 1000, 10000],
+				            getData: function($defer, params) {
+				        	    $defer.resolve(vm.entregables.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				            }
+				        };		
+				        $rootScope.tableParams = new ngTableParams(params,settings);
 					});
 		});
 	};		

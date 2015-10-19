@@ -1,12 +1,16 @@
-angular.module('consumidorCtrl', ['consumidorService'])
+angular.module('consumidorCtrl', ['consumidorService','ngTable'])
 
-.controller('consumidorController', function(Consumidor) {
+.controller('consumidorController', function(Consumidor,$rootScope,ngTableParams) {
 
 	var vm = this;
 
 	// set a processing variable to show loading things
 	vm.consumiendo = true;
 
+	var params = {
+		page: 1,
+	    count: 9
+	}
 	// grab all the users at page load
 	Consumidor.all()
 		.success(function(data) {
@@ -14,8 +18,15 @@ angular.module('consumidorCtrl', ['consumidorService'])
 			// when all the users come back, remove the processing variable
 			vm.consumiendo = false;
 
-			// bind the entregables that come back to vm.entregables
 			vm.consumidores = data;
+			var settings = {
+	            total: vm.consumidores.length, // resultados en total,
+	            counts: [10, 1000, 10000],
+	            getData: function($defer, params) {
+	        	    $defer.resolve(vm.consumidores.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	            }
+	        };		
+	        $rootScope.tableParams = new ngTableParams(params,settings);
 		});
 
 	// function to delete a consumidor
@@ -28,13 +39,22 @@ angular.module('consumidorCtrl', ['consumidorService'])
 				// get all users to update the table
 				// you can also set up your api 
 				// to return the list of catalogos with the delete call
+				// grab all the users at page load
 				Consumidor.all()
 					.success(function(data) {
+
 						// when all the users come back, remove the processing variable
 						vm.consumiendo = false;
 
-						// bind the entregables that come back to vm.entregables
 						vm.consumidores = data;
+						var settings = {
+				            total: vm.consumidores.length, // resultados en total,
+				            counts: [10, 1000, 10000],
+				            getData: function($defer, params) {
+				        	    $defer.resolve(vm.consumidores.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				            }
+				        };		
+				        $rootScope.tableParams = new ngTableParams(params,settings);
 					});
 		});
 	};		

@@ -10,7 +10,7 @@
 	<p>Cargando Entorno...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="entorno.entornos">
+<table ng-table="tableParams" class="table table-bordered table-striped" ng-show="entorno.entornos">
 	<thead>
 		<tr>
 			<th>Entregable</th>
@@ -23,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="desplegado in entorno.entornos | filter: searchBoxEntorno">
+		<tr ng-repeat="desplegado in $data | filter: searchBoxEntorno">
 			<td>{{ desplegado.entregable.nombre }}</td>
 			<td class="col-sm-2">
 				<input type="date" id="dt1" class="form-control input-sm"

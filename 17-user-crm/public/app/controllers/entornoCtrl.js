@@ -1,12 +1,16 @@
-angular.module('entornoCtrl', ['entornoService'])
+angular.module('entornoCtrl', ['entornoService','ngTable'])
 
-.controller('entornoController', function(Entorno) {
+.controller('entornoController', function(Entorno,$rootScope,ngTableParams) {
 
 	var vm = this;
 
 	// set a processing variable to show loading things
 	vm.desplegando = true;
 
+	var params = {
+		page: 1,
+	    count: 9
+	}
 	// grab all the users at page load
 	Entorno.all()
 		.success(function(data) {
@@ -14,8 +18,15 @@ angular.module('entornoCtrl', ['entornoService'])
 			// when all the users come back, remove the processing variable
 			vm.desplegando = false;
 
-			// bind the entregables that come back to vm.entregables
 			vm.entornos = data;
+			var settings = {
+	            total: vm.entornos.length, // resultados en total,
+	            counts: [10, 1000, 10000],
+	            getData: function($defer, params) {
+	        	    $defer.resolve(vm.entornos.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	            }
+	        };		
+	        $rootScope.tableParams = new ngTableParams(params,settings);
 		});
 
 	// function to delete a entorno
@@ -30,11 +41,19 @@ angular.module('entornoCtrl', ['entornoService'])
 				// to return the list of entornos with the delete call
 				Entorno.all()
 					.success(function(data) {
+
 						// when all the users come back, remove the processing variable
 						vm.desplegando = false;
 
-						// bind the entornos that come back to vm.entornos
 						vm.entornos = data;
+						var settings = {
+				            total: vm.entornos.length, // resultados en total,
+				            counts: [10, 1000, 10000],
+				            getData: function($defer, params) {
+				        	    $defer.resolve(vm.entornos.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+				            }
+				        };		
+				        $rootScope.tableParams = new ngTableParams(params,settings);
 					});
 		});
 	};		

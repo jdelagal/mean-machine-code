@@ -10,7 +10,7 @@
 	<p>Cargando Canal...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="canal.canales">
+<table ng-table="tableParams" class="table table-bordered table-striped" ng-show="canal.canales">
 	<thead>
 		<tr>
 			<th>Consumidor</th>
@@ -19,7 +19,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="canalidado in canal.canales | filter: searchBoxCanal">
+		<tr ng-repeat="canalidado in $data | filter: searchBoxCanal">
 			<td>{{ canalidado.consumidor.nombre  }}</td>
 			<td>{{ canalidado.nombre }}</td>
 	

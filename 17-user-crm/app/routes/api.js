@@ -682,7 +682,7 @@ module.exports = function(app, express) {
 
 		// delete the entorno with this id
 		.delete(function(req, res) {
-			console.log ("11111111111111 " + req.params.entorno_id);
+			//console.log ("11111111111111 " + req.params.entorno_id);
 			Entorno.remove({
 				_id: req.params.entorno_id
 			}, function(err, entorno) {

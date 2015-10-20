@@ -54,11 +54,17 @@
 		<div class="navbar-header">
 			<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-play-circle text-overflow"></span> Catálogo Servicios</a>
 		</div>	
+	
 		<ul class="nav navbar-nav navbar-right">
 			<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
 			<li ng-if="main.loggedIn" class="navbar-text">Bienvenido {{ main.user.username }}</li>
-			<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Salir</a></li>
+			<li ng-if="main.loggedIn"><a ng-href="#" ng-click="main.doLogout()">Salir</a></li>
 		</ul>
+
+		<div ng-if="main.loggedIn" class="nav navbar-nav navbar-right">
+			<a ng-href="/users/{{ main.user.username }}" class="navbar-text"><span class="navbar-text"></span> Cambiar Password</a>
+		</div>			
+
 	</div>
 	</div>
 </header>

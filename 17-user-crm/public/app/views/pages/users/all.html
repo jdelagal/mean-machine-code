@@ -12,7 +12,6 @@
 	<span class="glyphicon glyphicon-repeat spinner"></span>
 	<p>Loading Users...</p>
 </div>
-
 <table class="table table-bordered table-striped" ng-show="user.users">
 	<thead>
 		<tr>
@@ -22,7 +21,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="person in user.users">
+		<tr ng-repeat="person in user.users | filter: main.user.username">
 			<td>{{ person.name }}</td>
 			<td>{{ person.username }}</td>
 			<td class="col-sm-2">

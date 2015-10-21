@@ -24,3 +24,4 @@
 - Evitar duplicidades, que cada rol ajuste su actividas y que no se quede nada sin contestar.
 - Dar valor a la incidencia, no solo peticion / respuesta.
 - Que ocurre si alguna se sale del receptor. Se estudia.
+...

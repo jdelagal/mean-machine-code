@@ -1,4 +1,4 @@
-1) Alex con SESCAM. Sistema separado, quiera una respuesta distinta. Otro agente y canal para la consejeria. 
+1) Alex (soporte REPS) con SESCAM. Sistema separado, quiera una respuesta distinta. Otro agente y canal para la consejeria. 
 - Comentarlo con Iván. En la cabecera viene el origen, con urls. Alguien en origen tendria que mantener las urls. Va por Addresing --> a nivel de comunicaciones impacta ¿?. guardamos en cache las urls y es dimámico. Lo unico reconocer el agente nuevo. Otra opcion SESCAM le ponga url a la consejeria. Mejor hablarlo con Iván.
 - Hace tiempo en intercambiador paso algo parecido con Canarias.
 

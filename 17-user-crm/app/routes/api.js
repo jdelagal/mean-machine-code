@@ -220,8 +220,6 @@ module.exports = function(app, express) {
 				res.json({ message: 'Successfully deleted' });
 			});
 		});
-
-// on routes that end in /users
 	// ----------------------------------------------------
 	apiRouter.route('/catalogos')
 		// get all the users (accessed at GET http://localhost:8080/api/catalogos)

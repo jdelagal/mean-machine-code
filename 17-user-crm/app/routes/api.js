@@ -5,6 +5,7 @@ var Entregable       = require('../models/entregable');
 var Consumidor       = require('../models/consumidor');
 var Canal       = require('../models/canal');
 var Entorno       = require('../models/entorno');
+var Auditoria       = require('../models/auditoria');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -229,28 +230,34 @@ module.exports = function(app, express) {
 			
 			var catalogo = new Catalogo();		// create a new instance of the Catalogo model
 			catalogo.servicio = req.body.servicio;  // set the catalogos services (comes from the request)
-			//catalogo.proceso = req.body.proceso;  // set the catalogos proceso (comes from the request)
-			//catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
-			//catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
-			//catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
-			//catalogo.fecha_pre = req.body.fecha_pre;  // set the catalogos fecha_pre (comes from the request)
-			//catalogo.fecha_demo = req.body.fecha_demo;  // set the catalogos fecha_demo (comes from the request)
-			//catalogo.fecha_int = req.body.fecha_int;  // set the catalogos fecha_int (comes from the request)
-			//catalogo.fecha_dev = req.body.fecha_dev;  // set the catalogos fecha_dev (comes from the request)
-			catalogo.canal = req.body.canal;  // set the catalogos canal (comes from the request)			
-			catalogo.consumidor = req.body.consumidor;  // set the catalogos consumidor (comes from the request)
-			
+
 			catalogo.save(function(err) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El catatolo con ese valor del servicio ya existe. '});
+						return res.json({ success: false, message: 'El catatogo con ese valor del servicio ya existe. '});
 					else 
 						return res.send(err);
 				}
-
 				// return a message
 				res.json({ message: 'Catalogo creado.' });
+				//console.log ("auditoria: " + catalogo);
+				var auditoria = new Auditoria();
+				auditoria.accion = 'post';
+				auditoria.crud = 'catalogo';
+				auditoria.datos = catalogo;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+					}
+				});
 			});
 
 		})
@@ -287,15 +294,6 @@ module.exports = function(app, express) {
 
 				// set the new catalogo information if it exists in the request
 				if (req.body.servicio) catalogo.servicio = req.body.servicio;
-
-				//if (req.body.proceso) catalogo.proceso = req.body.proceso;
-				//if (req.body.entregable) catalogo.entregable = req.body.entregable;
-				//if (req.body.entorno) catalogo.entorno = req.body.entorno;
-				//if (req.body.fecha_prod) catalogo.fecha_prod = req.body.fecha_prod;
-				//if (req.body.fecha_pre) catalogo.fecha_pre = req.body.fecha_pre;
-				//if (req.body.fecha_demo) catalogo.fecha_demo = req.body.fecha_demo;
-				//if (req.body.fecha_int) catalogo.fecha_int = req.body.fecha_int;
-				//if (req.body.fecha_dev) catalogo.fecha_dev = req.body.fecha_dev;
 				if (req.body.canal) catalogo.canal = req.body.canal;
 				if (req.body.consumidor) catalogo.consumidor = req.body.consumidor;
 
@@ -305,6 +303,22 @@ module.exports = function(app, express) {
 
 					// return a message
 					res.json({ message: 'Catalogo actualizado.' });
+					var auditoria = new Auditoria();
+					auditoria.accion = 'put';
+					auditoria.crud = 'catalogo';
+					auditoria.datos = catalogo;
+					auditoria.fecha = new Date;
+					// To do
+					//auditoria.usuario = '';
+					auditoria.save(function(err) {
+						if (err) {
+							// duplicate entry
+							if (err.code == 11000) 
+								return res.json({ success: false, message: 'Error durante la auditoria. '});
+							else 
+								return res.send(err);
+						}
+					});
 				});
 
 			});
@@ -317,7 +331,23 @@ module.exports = function(app, express) {
 			}, function(err, catalogo) {
 				if (err) res.send(err);
 				res.json({ message: 'Borrado con Exito.' });
-			});
+				var auditoria = new Auditoria();
+				auditoria.accion = 'delete';
+				auditoria.crud = 'catalogo';
+				auditoria.datos = catalogo;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+					// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});
 		});
 
 	// on routes that end in /estregables
@@ -360,15 +390,6 @@ module.exports = function(app, express) {
 			entregable.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
 			if (req.body.fecha_prod) entregable.fecha_prod = req.body.fecha_prod
 			else entregable.fecha_prod = new Date;
-			
-			//catalogo.entregable = req.body.entregable;  // set the catalogos entregable (comes from the request)
-			//catalogo.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
-			//catalogo.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
-			//catalogo.fecha_pre = req.body.fecha_pre;  // set the catalogos fecha_pre (comes from the request)
-			//catalogo.fecha_demo = req.body.fecha_demo;  // set the catalogos fecha_demo (comes from the request)
-			//catalogo.fecha_int = req.body.fecha_int;  // set the catalogos fecha_int (comes from the request)
-			//catalogo.fecha_dev = req.body.fecha_dev;  // set the catalogos fecha_dev (comes from the request)
-		
 			entregable.save(function(err) {
 				if (err) {
 					// duplicate entry
@@ -380,8 +401,23 @@ module.exports = function(app, express) {
 
 				// return a message
 				res.json({ message: 'Entregable creado.' });
-			});
-
+				var auditoria = new Auditoria();
+				auditoria.accion = 'post';
+				auditoria.crud = 'entregable';
+				auditoria.datos = entregable;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+					// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});				
 		})
 
 	// on routes that end in /entregables/:entregable_id
@@ -405,9 +441,24 @@ module.exports = function(app, express) {
 
 					// return a message
 					res.json({ message: 'Entregable Actualizado.' });
+					var auditoria = new Auditoria();
+					auditoria.accion = 'put';
+					auditoria.crud = 'entregable';
+					auditoria.datos = entregable;
+					auditoria.fecha = new Date;
+					// To do
+					//auditoria.usuario = '';
+					auditoria.save(function(err) {
+						if (err) {
+						// duplicate entry
+							if (err.code == 11000) 
+								return res.json({ success: false, message: 'Error durante la auditoria. '});
+							else 
+								return res.send(err);
+							}
+						});				
+					});						
 				});
-
-			});
 		})
 
 		// delete the entregable with this id
@@ -417,7 +468,23 @@ module.exports = function(app, express) {
 			}, function(err, entregable) {
 				if (err) res.send(err);
 				res.json({ message: 'Borrado con Exito.' });
-			});
+				var auditoria = new Auditoria();
+				auditoria.accion = 'delete';
+				auditoria.crud = 'entregable';
+				auditoria.datos = entregable;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+					// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});					
 		});
 		
 
@@ -467,8 +534,23 @@ module.exports = function(app, express) {
 
 				// return a message
 				res.json({ message: 'Consumidor creado.' });
-			});
-
+				var auditoria = new Auditoria();
+				auditoria.accion = 'post';
+				auditoria.crud = 'consumidor';
+				auditoria.datos = consumidor;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+					// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});					
 		});
 
 	// on routes that end in /entregables/:entregable_id
@@ -490,9 +572,24 @@ module.exports = function(app, express) {
 
 					// return a message
 					res.json({ message: 'Consumidor Actualizado.' });
+					var auditoria = new Auditoria();
+					auditoria.accion = 'put';
+					auditoria.crud = 'consumidor';
+					auditoria.datos = consumidor;
+					auditoria.fecha = new Date;
+					// To do
+					//auditoria.usuario = '';
+					auditoria.save(function(err) {
+						if (err) {
+						// duplicate entry
+							if (err.code == 11000) 
+								return res.json({ success: false, message: 'Error durante la auditoria. '});
+							else 
+								return res.send(err);
+							}
+						});				
+					});						
 				});
-
-			});
 		})
 
 		// delete the consumidor with this id
@@ -502,7 +599,23 @@ module.exports = function(app, express) {
 			}, function(err, consumidor) {
 				if (err) res.send(err);
 				res.json({ message: 'Borrado con Exito.' });
-			});
+				var auditoria = new Auditoria();
+				auditoria.accion = 'delete';
+				auditoria.crud = 'consumidor';
+				auditoria.datos = consumidor;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});					
 		});
 
 		// on routes that end in /canales
@@ -551,8 +664,23 @@ module.exports = function(app, express) {
 
 				// return a message
 				res.json({ message: 'Canal creado.' });
-			});
-
+				var auditoria = new Auditoria();
+				auditoria.accion = 'post';
+				auditoria.crud = 'canal';
+				auditoria.datos = canal;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});				
 		});		
 
 	// on routes that end in /canales/:canal_id
@@ -574,9 +702,24 @@ module.exports = function(app, express) {
 
 					// return a message
 					res.json({ message: 'Canal Actualizado.' });
+					var auditoria = new Auditoria();
+					auditoria.accion = 'put';
+					auditoria.crud = 'canal';
+					auditoria.datos = canal;
+					auditoria.fecha = new Date;
+					// To do
+					//auditoria.usuario = '';
+					auditoria.save(function(err) {
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+							else 
+								return res.send(err);
+							}
+						});				
+					});						
 				});
-
-			});
 		})
 
 		// delete the canal with this id
@@ -586,7 +729,23 @@ module.exports = function(app, express) {
 			}, function(err, canal) {
 				if (err) res.send(err);
 				res.json({ message: 'Borrado con Exito.' });
-			});
+				var auditoria = new Auditoria();
+				auditoria.accion = 'delete';
+				auditoria.crud = 'canal';
+				auditoria.datos = canal;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+					// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});					
 		});		
 
 	// on routes that end in /entornos
@@ -648,8 +807,23 @@ module.exports = function(app, express) {
 
 				// return a message
 				res.json({ message: 'Entorno creado.' });
-			});
-
+				var auditoria = new Auditoria();
+				auditoria.accion = 'post';
+				auditoria.crud = 'entorno';
+				auditoria.datos = entorno;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+					// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});				
 		})
 
 	// on routes that end in /entornos/:entorno_id
@@ -673,9 +847,24 @@ module.exports = function(app, express) {
 					// return a message
 					res.json({ message: 'Entorno Actualizado.' });
 					//console.log ("11111111111111 " + entorno);
+					var auditoria = new Auditoria();
+					auditoria.accion = 'put';
+					auditoria.crud = 'entorno';
+					auditoria.datos = entorno;
+					auditoria.fecha = new Date;
+					// To do
+					//auditoria.usuario = '';
+					auditoria.save(function(err) {
+						if (err) {
+						// duplicate entry
+							if (err.code == 11000) 
+								return res.json({ success: false, message: 'Error durante la auditoria. '});
+							else 
+								return res.send(err);
+							}
+						});				
+					});					
 				});
-
-			});
 		})
 
 		// delete the entorno with this id
@@ -686,7 +875,23 @@ module.exports = function(app, express) {
 			}, function(err, entorno) {
 				if (err) res.send(err);
 				res.json({ message: 'Borrado con Exito.' });
-			});
+				var auditoria = new Auditoria();
+				auditoria.accion = 'delete';
+				auditoria.crud = 'entorno';
+				auditoria.datos = entorno;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});					
 		});		
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {

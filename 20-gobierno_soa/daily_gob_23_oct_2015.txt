@@ -1,0 +1,55 @@
+1) Manuel Cabrera:
+- instalacion del WAFF, acceso a web services.
+- como y cuando debemos obtener informacion de ello.
+- contactar con Manuel para colaborar con el ¿?.
+
+2) Esperanza, mantenimiento BPM con gestion de problemas de Iván.
+- que Iván se ponga con WAFF con Manuel.
+- Esperanza tiene que estar primero con el REPS fase2, por las intervenciones al pliego ¿?.
+- REPS, Alex lider de los cambios con Carmen.
+- REPS:
+	+ fase1 no problema. Funcional, ADF y Procesos.
+	+ fase2: idem. 1 diciembre.
+	+ Esperanza gestion de incidencias.
+		+ Tiene que tocar con Pablo evolutivos.
+		+ Soporte REPS.
+		+ Ayuda a Iván con WAFF. 1 hora a la semana.
+		+ A medio plazo se podria integrar en el equipo de Integracion.
+	+ otro problema SAML de REPS. Soporte Iván.
+
+3) Certificados
+- Celia. Como son de prueba no son reales, etc...tendria que estar en productivo y sin salir de ahi.
+- Prueba en PROD pero con la marcha atrás preparada.
+- Contestar Chus a la incidencia oracle de valencia.
+- Int a valencia que probara por favor, todavía no lo han hecho. Vero que hable con Jose Esteban.
+- Iván: Asuncion nos va a informar de las incidencias de las CCAA ¿?. Jose Luis Plan Director ¿?.
+- Celia no hace seguimiento completo.
+- Resuelto el problema técnico de firma en Integración.
+- Correo del País Vasco.
+- Protocolo de respuesta con OT. Chus: va a enviar un correo para solucionarlo y la respuesta en toda la SGTI sea única.
+	+ Las CCAA tienen que resolver sus problemas, ello no sería soporte.
+- Celia y Asuncion van a enviar un correo aclarando, pero que no levante mas temas. Diferenciar responsabilidades.  Para que prueben ellos, la respuesta la tienen las CCAA.
+
+
+4) SESCAM, Iván.
+- Concectis, problema de mantenimineto certificados bistol. No es responsabilidad del MSSSI. Luego ira otra CA...
+
+5) BDCAP.
+- Contestamos hasta donde nosotros llegamos si.
+- Fecha actual, diferente al servicio de una fecha nada, que hay que hacer.
+- Reunion con BDCAP para tener el AI en fecha. Para conocer su necesidad, para dar una alcance.
+- Pasos:
+	+ Analisis con BDCAP. Integracion  + Gobierno. Campos de Tarjeta ¿?.
+		+ Al principio debe ir Tarjeta.
+	+ Negociacion acuerdo.
+	+ Diseño.
+	+ Integracion.
+	+ Rendimiento.
+
+6) Informacional, implementación del algoritomo de la nacionalidad. Quieren que lo provea Operacional Tarjeta.
+- Ese desarrollo deberia hacerlo Informacional. Un problema recursivo. Solucion ¿?.
+- Operacional no debería implementar necesidades de Informacional sin acordar, etc.
+- En el punto actual ya no haría falta un ETL.
+- Alternativa. No hacer nada sin un requisito. Que quede escrito y lo valide Jose Luis.
+- En BDCAP tiene sentidi un servicio, pero tarjeta con tarjeta ¿?.
+

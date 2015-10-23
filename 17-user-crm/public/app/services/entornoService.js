@@ -28,6 +28,13 @@ angular.module('entornoService', [])
 	entornoFactory.delete = function(id) {
 		return $http.delete('/api/entornos/' + id);
 	};	
+
+
+	// get all entregables filtrados
+	entornoFactory.allBuscar = function(id) {
+		return $http.get('/api/entornos/buscar/'+ id);
+
+	};		
 	// return our entire entornoFactory object
 	return entornoFactory;
 

@@ -23,7 +23,12 @@
 	<tbody>
 		<tr ng-repeat="entregado in $data | filter: searchBoxEntregable">
 			<td>{{ entregado.catalogo.servicio }}</td>
-			<td>{{ entregado.nombre }}</td>
+			<td>
+				<a ng-href="/entornos/buscar/{{ entregado._id }}" title="Buscar Entorno del Entregable" class="btn btn-default">
+					<span class="glyphicon glyphicon-search"></span>
+				</a>
+			{{ entregado.nombre }}
+			</td>
 			<td>{{ entregado.entorno }}</td>
 			<td class="col-sm-2">
 				<input type="date" id="dt1" class="form-control input-sm"

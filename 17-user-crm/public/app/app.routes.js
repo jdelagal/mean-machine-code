@@ -172,7 +172,13 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/entregables/all.html',
 			controller: 'entregableBuscarController',
 			controllerAs: 'entregable'
-		})			
+		})		
+
+		.when('/entornos/buscar/:entregable_id', {
+			templateUrl: 'app/views/pages/entornos/all.html',
+			controller: 'entornoBuscarController',
+			controllerAs: 'entorno'
+		})				
 
 	$locationProvider.html5Mode(true);
 

@@ -59,6 +59,38 @@ angular.module('entornoCtrl', ['entornoService','ngTable'])
 	};		
 })
 
+.controller('entornoBuscarController', function(Entorno,$rootScope,ngTableParams,$routeParams) {
+
+	var vm = this;
+
+	// set a processing variable to show loading things
+	vm.desplegando = true;
+
+	var params = {
+		page: 1,
+	    count: 9
+	}
+	// grab all the entregable at page load
+	Entorno.allBuscar($routeParams.entregable_id)
+		.success(function(data) {
+			// when all the users come back, remove the processing variable
+			vm.desplegando = false;
+			// bind the catalogos that come back to vm.catalogos
+			//este data es diferente del data de la paginacion
+			//por ello se descarga en vm.catalogos pues entra
+			//en contexto el otro data, $data del paginado
+			vm.entornos = data;
+			var settings = {
+	            total: vm.entornos.length, // resultados en total,
+	            counts: [10, 1000, 10000],
+	            getData: function($defer, params) {
+	        	    $defer.resolve(vm.entornos.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	            }
+	        };		
+	        $rootScope.tableParams = new ngTableParams(params,settings);
+		});
+})
+
 .controller('entornoEntregableCreateController', function($routeParams, Entorno) {
 
 	var vm = this;

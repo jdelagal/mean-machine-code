@@ -278,7 +278,7 @@ module.exports = function(app, express) {
 
 		// get the catalogo with that id
 		.get(function(req, res) {
-			Catalogo.findById(req.params.catalogo_id, function(err, catalogo) {
+			Catalogo.findByentregablesId(req.params.catalogo_id, function(err, catalogo) {
 				if (err) res.send(err);
 
 				// return that catalogo
@@ -892,7 +892,62 @@ module.exports = function(app, express) {
 						}
 					});				
 				});					
-		});		
+		})
+
+	// on routes that end in /entregables/:catalogo_id
+	// ----------------------------------------------------
+	apiRouter.route('/entregables/buscar/:catalogo_id')
+
+		.get(function(req, res) {	
+			Entregable.find({catalogo: req.params.catalogo_id}, function(err, entregables) {
+				Catalogo.populate(entregables, {path: "catalogo"}, function(err, entregables){
+					if (err) res.send(err);
+
+					// return the entregables
+					res.json(entregables);
+					//console.log ("11111111111111 " + entregables);
+				});
+			});		
+
+		})
+
+		.post(function(req, res) {
+			var entregable = new Entregable();		// create a new instance of the Catalogo model
+			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
+			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
+			entregable.catalogo = req.params.catalogo_id;  // set the catalogos entorno (comes from the request)
+			entregable.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
+			if (req.body.fecha_prod) entregable.fecha_prod = req.body.fecha_prod
+			else entregable.fecha_prod = new Date;
+			entregable.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El entregable con ese valor ya existe. '});
+					else 
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'Entregable creado.' });
+				var auditoria = new Auditoria();
+				auditoria.accion = 'post';
+				auditoria.crud = 'entregable';
+				auditoria.datos = entregable;
+				auditoria.fecha = new Date;
+				// To do
+				//auditoria.usuario = '';
+				auditoria.save(function(err) {
+					if (err) {
+					// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'Error durante la auditoria. '});
+						else 
+							return res.send(err);
+						}
+					});				
+				});				
+		});				
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);

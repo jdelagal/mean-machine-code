@@ -168,6 +168,12 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'entorno'
 		})	
 
+		.when('/entregables/buscar/:catalogo_id', {
+			templateUrl: 'app/views/pages/entregables/all.html',
+			controller: 'entregableBuscarController',
+			controllerAs: 'entregable'
+		})			
+
 	$locationProvider.html5Mode(true);
 
 });

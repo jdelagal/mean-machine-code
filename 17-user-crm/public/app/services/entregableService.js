@@ -33,6 +33,12 @@ angular.module('entregableService', [])
 	entregableFactory.delete = function(id) {
 		return $http.delete('/api/entregables/' + id);
 	};	
+
+	// get all entregables filtrados
+	entregableFactory.allBuscar = function(id) {
+		return $http.get('/api/entregables/buscar/'+ id);
+
+	};	
 	// return our entire entragableFactory object
 	return entregableFactory;
 

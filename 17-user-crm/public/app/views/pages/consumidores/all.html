@@ -21,7 +21,12 @@
 	<tbody>
 		<tr ng-repeat="consumido in $data  | filter: searchBoxConsumidor">
 			<td>{{ consumido.catalogo.servicio }}</td>
-			<td>{{ consumido.nombre }}</td>
+			<td>
+				<a ng-href="/b_canales/{{ consumido._id }}" title="Buscar Canales del Consumidor" class="btn btn-default">
+					<span class="glyphicon glyphicon-search"></span>
+				</a>			
+				{{ consumido.nombre }}
+			</td>
 			<td class="col-sm-2">
 				<a ng-href="/canales/{{ consumido._id }}" title="Dar de Alta Canal" class="btn btn-default">
 					<span class="glyphicon glyphicon-plus"></span>

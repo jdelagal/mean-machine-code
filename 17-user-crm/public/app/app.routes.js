@@ -168,17 +168,29 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'entorno'
 		})	
 
-		.when('/entregables/buscar/:catalogo_id', {
+		.when('/b_entregables/:catalogo_id', {
 			templateUrl: 'app/views/pages/entregables/all.html',
 			controller: 'entregableBuscarController',
 			controllerAs: 'entregable'
 		})		
 
-		.when('/entornos/buscar/:entregable_id', {
+		.when('/b_entornos/:entregable_id', {
 			templateUrl: 'app/views/pages/entornos/all.html',
 			controller: 'entornoBuscarController',
 			controllerAs: 'entorno'
-		})				
+		})	
+
+		.when('/b_consumidores/:catalogo_id', {
+			templateUrl: 'app/views/pages/consumidores/all.html',
+			controller: 'consumidorBuscarController',
+			controllerAs: 'consumidor'
+		})	
+
+		.when('/b_canales/:consumidor_id', {
+			templateUrl: 'app/views/pages/canales/all.html',
+			controller: 'canalBuscarController',
+			controllerAs: 'canal'
+		})								
 
 	$locationProvider.html5Mode(true);
 

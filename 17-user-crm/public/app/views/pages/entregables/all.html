@@ -24,7 +24,7 @@
 		<tr ng-repeat="entregado in $data | filter: searchBoxEntregable">
 			<td>{{ entregado.catalogo.servicio }}</td>
 			<td>
-				<a ng-href="/entornos/buscar/{{ entregado._id }}" title="Buscar Entorno del Entregable" class="btn btn-default">
+				<a ng-href="/b_entornos/{{ entregado._id }}" title="Buscar Entorno del Entregable" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
 				</a>
 			{{ entregado.nombre }}

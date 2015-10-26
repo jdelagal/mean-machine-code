@@ -36,9 +36,10 @@ angular.module('entregableService', [])
 
 	// get all entregables filtrados
 	entregableFactory.allBuscar = function(id) {
-		return $http.get('/api/entregables/buscar/'+ id);
+		return $http.get('/api/b_entregables/'+ id);
 
 	};	
+
 	// return our entire entragableFactory object
 	return entregableFactory;
 

@@ -32,7 +32,7 @@ angular.module('entornoService', [])
 
 	// get all entregables filtrados
 	entornoFactory.allBuscar = function(id) {
-		return $http.get('/api/entornos/buscar/'+ id);
+		return $http.get('/api/b_entornos/'+ id);
 
 	};		
 	// return our entire entornoFactory object

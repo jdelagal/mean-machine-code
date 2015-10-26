@@ -28,9 +28,12 @@
 	<tbody>
 		<tr ng-repeat="servicio in $data | filter: searchBox">
 			<td>
-				<a ng-href="/entregables/buscar/{{ servicio._id }}" title="Buscar Entregables del Servicio" class="btn btn-default">
+				<a ng-href="/b_entregables/{{ servicio._id }}" title="Buscar Entregables del Servicio" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
 				</a>
+				<a ng-href="/b_consumidores/{{ servicio._id }}" title="Buscar Consumidores del Servicio" class="btn btn-default">
+					<span class="glyphicon glyphicon-search"></span>
+				</a>				
 				{{ servicio.servicio }} 
 			</td>
 					

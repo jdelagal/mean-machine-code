@@ -894,9 +894,9 @@ module.exports = function(app, express) {
 				});					
 		})
 
-	// on routes that end in /entregables/:catalogo_id
+	// on routes that end in /b_entregables/:catalogo_id
 	// ----------------------------------------------------
-	apiRouter.route('/entregables/buscar/:catalogo_id')
+	apiRouter.route('/b_entregables/:catalogo_id')
 
 		.get(function(req, res) {	
 			Entregable.find({catalogo: req.params.catalogo_id}, function(err, entregables) {
@@ -911,9 +911,9 @@ module.exports = function(app, express) {
 
 		});		
 
-	// on routes that end in /entornos/:entregable_id
+	// on routes that end in /b_entornos/:entregable_id
 	// ----------------------------------------------------
-	apiRouter.route('/entornos/buscar/:entregable_id')
+	apiRouter.route('/b_entornos/:entregable_id')
 
 		.get(function(req, res) {	
 			Entorno.find({entregable: req.params.entregable_id}, function(err, entornos) {
@@ -922,11 +922,45 @@ module.exports = function(app, express) {
 
 					// return the entregables
 					res.json(entornos);
-					console.log ("entornos: " + entornos);
+					//console.log ("entornos: " + entornos);
 				});
 			});		
 
-		});				
+		});		
+
+	// on routes that end in /b_entregables/:catalogo_id
+	// ----------------------------------------------------
+	apiRouter.route('/b_consumidores/:catalogo_id')
+
+		.get(function(req, res) {	
+			Consumidor.find({catalogo: req.params.catalogo_id}, function(err, consumidores) {
+				Catalogo.populate(consumidores, {path: "catalogo"}, function(err, consumidores){
+					if (err) res.send(err);
+
+					// return the entregables
+					res.json(consumidores);
+					//console.log ("11111111111111 " + entregables);
+				});
+			});		
+
+		});		
+
+	// on routes that end in /b_canales/:consumidor_id
+	// ----------------------------------------------------
+	apiRouter.route('/b_canales/:consumidor_id')
+
+		.get(function(req, res) {	
+			Canal.find({consumidor: req.params.consumidor_id}, function(err, canales) {
+				Consumidor.populate(canales, {path: "consumidor"}, function(err, canales){
+					if (err) res.send(err);
+
+					// return the entregables
+					res.json(canales);
+					//console.log ("11111111111111 " + entregables);
+				});
+			});		
+
+		});						
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);

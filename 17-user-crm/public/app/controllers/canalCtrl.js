@@ -59,6 +59,35 @@ angular.module('canalCtrl', ['canalService','ngTable'])
 	};		
 })
 
+.controller('canalBuscarController', function(Canal,$rootScope,ngTableParams,$routeParams) {
+
+	var vm = this;
+
+	// set a processing variable to show loading things
+	vm.canalizando = true;
+
+	var params = {
+		page: 1,
+	    count: 9
+	}
+	// grab all the users at page load
+	Canal.allBuscar($routeParams.consumidor_id)
+		.success(function(data) {
+
+			// when all the users come back, remove the processing variable
+			vm.canalizando = false;
+			//paginado
+			vm.canales = data;
+			var settings = {
+	            total: vm.canales.length, // resultados en total,
+	            counts: [10, 1000, 10000],
+	            getData: function($defer, params) {
+	        	    $defer.resolve(vm.canales.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	            }
+	        };		
+	        $rootScope.tableParams = new ngTableParams(params,settings);
+		});
+})
 .controller('canalConsumidorCreateController', function($routeParams, Canal) {
 
 	var vm = this;

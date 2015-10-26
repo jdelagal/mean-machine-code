@@ -13,6 +13,7 @@
 <table ng-table="tableParams" class="table table-bordered table-striped" ng-show="entregable.entregables">
 	<thead>
 		<tr>
+			<th class="col-sm-1">Busqueda</th>
 			<th>Servicio</th>
 			<th>Entregable</th>
 			<th>Entorno Actual</th>
@@ -22,12 +23,14 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="entregado in $data | filter: searchBoxEntregable">
-			<td>{{ entregado.catalogo.servicio }}</td>
 			<td>
 				<a ng-href="/b_entornos/{{ entregado._id }}" title="Buscar Entorno del Entregable" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
-				</a>
-			{{ entregado.nombre }}
+				</a>			
+			</td>
+			<td>{{ entregado.catalogo.servicio }}</td>
+			<td>
+				{{ entregado.nombre }}
 			</td>
 			<td>{{ entregado.entorno }}</td>
 			<td class="col-sm-2">
@@ -44,10 +47,10 @@
 			
 			-->
 			<td class="col-sm-2">
-				<a ng-href="/entornos/{{ entregado._id }}" title="Dar de Alta Entorno" class="btn btn-default">
+				<a ng-href="/a_entornos/{{ entregado._id }}" title="Dar de Alta Entorno" class="btn btn-default">
 					<span class="glyphicon glyphicon-plus"></span>
 				</a>				
-				<a ng-href="/entregables/editar/{{ entregado._id }}" title="Editar" class="btn btn-default">
+				<a ng-href="/entregables/{{ entregado._id }}" title="Editar" class="btn btn-default">
 					<span class="glyphicon glyphicon-edit"></span>
 				</a>
 				<a href="#" ng-click="entregable.deleteEntregable(entregado._id)" title="Borrar"class="btn btn-danger">

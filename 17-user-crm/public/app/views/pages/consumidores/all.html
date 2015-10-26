@@ -13,6 +13,7 @@
 <table ng-table="tableParams" class="table table-bordered table-striped" ng-show="consumidor.consumidores">
 	<thead>
 		<tr>
+			<th class="col-sm-1">Búsqueda</th>
 			<th>Servicio</th>
 			<th>Consumidor</th>
 			<th class="col-sm-2">Operación</th>
@@ -20,18 +21,20 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="consumido in $data  | filter: searchBoxConsumidor">
-			<td>{{ consumido.catalogo.servicio }}</td>
 			<td>
 				<a ng-href="/b_canales/{{ consumido._id }}" title="Buscar Canales del Consumidor" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
-				</a>			
+				</a>				
+			</td>
+			<td>{{ consumido.catalogo.servicio }}</td>
+			<td>
 				{{ consumido.nombre }}
 			</td>
 			<td class="col-sm-2">
-				<a ng-href="/canales/{{ consumido._id }}" title="Dar de Alta Canal" class="btn btn-default">
+				<a ng-href="/a_canales/{{ consumido._id }}" title="Dar de Alta Canal" class="btn btn-default">
 					<span class="glyphicon glyphicon-plus"></span>
 				</a>	
-				<a ng-href="/consumidores/editar/{{ consumido._id }}" title="Editar" class="btn btn-default">
+				<a ng-href="/consumidores/{{ consumido._id }}" title="Editar" class="btn btn-default">
 					<span class="glyphicon glyphicon-edit"></span>
 				</a>
 				<a href="#" ng-click="consumidor.deleteConsumidor(consumido._id)" title="Borrar"class="btn btn-danger">

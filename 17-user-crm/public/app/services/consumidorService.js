@@ -16,7 +16,7 @@ angular.module('consumidorService', [])
 	};
 	// create a consumidor
 	consumidorFactory.create = function(id, consumidorData) {
-		return $http.post('/api/consumidores/'+id, consumidorData);
+		return $http.post('/api/a_consumidores/'+id, consumidorData);
 	};
 
 		// update a consumidor

@@ -69,28 +69,21 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'entregable'
 		})
 
-		.when('/entregables/:catalogo_id', {
+		.when('/a_entregables/:catalogo_id', {
 			templateUrl: 'app/views/pages/entregables/single.html',
 			controller: 'entregableCatalogoCreateController',
 			controllerAs: 'entregable'
 		})		
 		
 		// page to edit a entregable
-		.when('/entregables/editar/:entregable_id', {
+		.when('/entregables/:entregable_id', {
 			templateUrl: 'app/views/pages/entregables/single.html',
 			controller: 'entregableEditController',
 			controllerAs: 'entregable'
 		})	
 
-		// page to edit a entregable
-		.when('/entregables/borrar/:entregable_id', {
-			templateUrl: 'app/views/pages/entregables/all.html',
-			controller: 'entregableController',
-			controllerAs: 'entregable'
-		})		
-
 		// page to edit a consumidor
-		.when('/consumidores/:catalogo_id', {
+		.when('/a_consumidores/:catalogo_id', {
 			templateUrl: 'app/views/pages/consumidores/single.html',
 			controller: 'consumidorCatalogoCreateController',
 			controllerAs: 'consumidor'
@@ -123,22 +116,15 @@ angular.module('app.routes', ['ngRoute'])
 		})	
 
 		// page to add a canal
-		.when('/canales/:consumidor_id', {
+		.when('/a_canales/:consumidor_id', {
 			templateUrl: 'app/views/pages/canales/single.html',
 			controller: 'canalConsumidorCreateController',
 			controllerAs: 'canal'
 		})	
 
-		.when('/canales/editar/:canal_id', {
+		.when('/canales/:canal_id', {
 			templateUrl: 'app/views/pages/canales/single.html',
 			controller: 'canalEditController',
-			controllerAs: 'canal'
-		})		
-
-		// page to edit a canal
-		.when('/canales/borrar/:canal_id', {
-			templateUrl: 'app/views/pages/canales/all.html',
-			controller: 'canalController',
 			controllerAs: 'canal'
 		})		
 
@@ -149,24 +135,17 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'entorno'
 		})		
 
-		.when('/entornos/:entregable_id', {
+		.when('/a_entornos/:entregable_id', {
 			templateUrl: 'app/views/pages/entornos/single.html',
 			controller: 'entornoEntregableCreateController',
 			controllerAs: 'entorno'
 		})	
 
-		.when('/entornos/editar/:entorno_id', {
+		.when('/entornos/:entorno_id', {
 			templateUrl: 'app/views/pages/entornos/single.html',
 			controller: 'entornoEditController',
 			controllerAs: 'entorno'
 		})		
-
-		// page to edit a entorno
-		.when('/entornos/borrar/:entorno_id', {
-			templateUrl: 'app/views/pages/entornos/all.html',
-			controller: 'entornoController',
-			controllerAs: 'entorno'
-		})	
 
 		.when('/b_entregables/:catalogo_id', {
 			templateUrl: 'app/views/pages/entregables/all.html',

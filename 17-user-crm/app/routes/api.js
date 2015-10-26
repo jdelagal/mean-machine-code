@@ -278,7 +278,7 @@ module.exports = function(app, express) {
 
 		// get the catalogo with that id
 		.get(function(req, res) {
-			Catalogo.findByentregablesId(req.params.catalogo_id, function(err, catalogo) {
+			Catalogo.findById(req.params.catalogo_id, function(err, catalogo) {
 				if (err) res.send(err);
 
 				// return that catalogo
@@ -369,18 +369,7 @@ module.exports = function(app, express) {
 
 	// on routes that end in /entregables/:catalogo_id
 	// ----------------------------------------------------
-	apiRouter.route('/entregables/:catalogo_id')
-
-		// get the entregable with that id
-		.get(function(req, res) {
-			Entregable.findById(req.params.catalogo_id, function(err, entregable) {
-				Catalogo.populate(entregable, {path: 'catalogo'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(entregable);
-			});
-		})
+	apiRouter.route('/a_entregables/:catalogo_id')
 
 		.post(function(req, res) {
 			var entregable = new Entregable();		// create a new instance of the Catalogo model
@@ -424,6 +413,15 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/entregables/:entregable_id')
 
+		// get the entregable with that id
+		.get(function(req, res) {
+			Entregable.findById(req.params.entregable_id, function(err, entregable) {
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(entregable);
+			});
+		})
 		// update the catalogo with this id
 		.put(function(req, res) {
 			Entregable.findById(req.params.entregable_id, function(err, entregable) {
@@ -506,17 +504,7 @@ module.exports = function(app, express) {
 		});
 	// on routes that end in /consumidores/:catalogo_id
 	// ----------------------------------------------------
-	apiRouter.route('/consumidores/:catalogo_id')
-				// get the consumidor with that id
-		.get(function(req, res) {
-			Consumidor.findById(req.params.catalogo_id, function(err, consumidor) {
-				Catalogo.populate(consumidor, {path: 'catalogo'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(consumidor);
-			});
-		})
+	apiRouter.route('/a_consumidores/:catalogo_id')
 
 		.post(function(req, res) {
 			var consumidor = new Consumidor();		// create a new instance of the Catalogo model
@@ -556,7 +544,15 @@ module.exports = function(app, express) {
 	// on routes that end in /entregables/:entregable_id
 	// ----------------------------------------------------
 	apiRouter.route('/consumidores/:consumidor_id')
+				// get the consumidor with that id
+		.get(function(req, res) {
+			Consumidor.findById(req.params.consumidor_id, function(err, consumidor) {
+				if (err) res.send(err);
 
+				// return that entregable
+				res.json(consumidor);
+			});
+		})
 				// update the catalogo with this id
 		.put(function(req, res) {
 			Consumidor.findById(req.params.consumidor_id, function(err, consumidor) {
@@ -637,17 +633,8 @@ module.exports = function(app, express) {
 
 	// on routes that end in /canales/:consumidor_id
 	// ----------------------------------------------------
-	apiRouter.route('/canales/:consumidor_id')
+	apiRouter.route('/a_canales/:consumidor_id')
 
-		.get(function(req, res) {
-			Canal.findById(req.params.consumidor_id, function(err, canal) {
-				Consumidor.populate(canal, {path: 'consumidor'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(canal);
-			});
-		})
 		.post(function(req, res) {
 			var canal = new Canal();		// create a new instance of the Catalogo model
 			canal.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
@@ -687,6 +674,14 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/canales/:canal_id')
 
+		.get(function(req, res) {
+			Canal.findById(req.params.canal_id, function(err, canal) {
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(canal);
+			});
+		})
 				// update the catalogo with this id
 		.put(function(req, res) {
 			Canal.findById(req.params.canal_id, function(err, canal) {
@@ -767,19 +762,7 @@ module.exports = function(app, express) {
 
 	// on routes that end in /entornos/:entregable_id
 	// ----------------------------------------------------
-	apiRouter.route('/entornos/:entregable_id')
-
-		// get the entregable with that id
-		.get(function(req, res) {
-			Entorno.findById(req.params.entregable_id, function(err, entorno) {
-				Entregable.populate(entorno, {path: 'entregable'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(entorno);
-
-			});
-		})
+	apiRouter.route('/a_entornos/:entregable_id')
 
 		.post(function(req, res) {
 			var entorno = new Entorno();		// create a new instance of the entorno model
@@ -830,6 +813,14 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/entornos/:entorno_id')
 
+		.get(function(req, res) {
+			Entorno.findById(req.params.entorno_id, function(err, entorno) {
+				if (err) res.send(err);
+
+				// return that entorno
+				res.json(entorno);
+			});
+		})
 				// update the catalogo with this id
 		.put(function(req, res) {
 			Entorno.findById(req.params.entorno_id, function(err, entorno) {
@@ -839,7 +830,7 @@ module.exports = function(app, express) {
 				if (req.body.fecha_demo) entorno.fecha_demo = req.body.fecha_demo;
 				if (req.body.fecha_int) entorno.fecha_int = req.body.fecha_int;
 				if (req.body.fecha_lab) entorno.fecha_lab = req.body.fecha_lab;
-				if (req.body.fecha_dev) entorno.fecha_pre = req.body.fecha_dev;
+				if (req.body.fecha_dev) entorno.fecha_dev = req.body.fecha_dev;
 				// save the entorno
 				entorno.save(function(err) {
 					if (err) res.send(err);

@@ -835,11 +835,11 @@ module.exports = function(app, express) {
 			Entorno.findById(req.params.entorno_id, function(err, entorno) {
 
 				if (err) res.send(err);
-				entorno.fecha_pre = req.body.fecha_pre;
-				entorno.fecha_demo = req.body.fecha_demo;
-				entorno.fecha_int = req.body.fecha_int;
-				entorno.fecha_lab = req.body.fecha_lab;
-				entorno.fecha_dev = req.body.fecha_dev;
+				if (req.body.fecha_pre) entorno.fecha_pre = req.body.fecha_pre;
+				if (req.body.fecha_demo) entorno.fecha_demo = req.body.fecha_demo;
+				if (req.body.fecha_int) entorno.fecha_int = req.body.fecha_int;
+				if (req.body.fecha_lab) entorno.fecha_lab = req.body.fecha_lab;
+				if (req.body.fecha_dev) entorno.fecha_pre = req.body.fecha_dev;
 				// save the entorno
 				entorno.save(function(err) {
 					if (err) res.send(err);

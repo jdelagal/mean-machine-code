@@ -235,7 +235,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El catatogo con ese valor del servicio ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del servicio ya existe. '});
 					else 
 						return res.send(err);
 				}
@@ -290,8 +290,6 @@ module.exports = function(app, express) {
 		.put(function(req, res) {
 			Catalogo.findById(req.params.catalogo_id, function(err, catalogo) {
 
-				if (err) res.send(err);
-
 				// set the new catalogo information if it exists in the request
 				if (req.body.servicio) catalogo.servicio = req.body.servicio;
 				if (req.body.canal) catalogo.canal = req.body.canal;
@@ -299,7 +297,14 @@ module.exports = function(app, express) {
 
 				// save the catalogo
 				catalogo.save(function(err) {
-					if (err) res.send(err);
+					// duplicate entry
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'El catalogo con ese valor del servicio ya existe. '});
+						else 
+							return res.send(err);
+					}
 
 					// return a message
 					res.json({ message: 'Catalogo actualizado.' });
@@ -435,7 +440,13 @@ module.exports = function(app, express) {
 
 				// save the entregable
 				entregable.save(function(err) {
-					if (err) res.send(err);
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'El entregable con ese valor del servicio ya existe. '});
+						else 
+							return res.send(err);
+					}
 
 					// return a message
 					res.json({ message: 'Entregable Actualizado.' });
@@ -564,7 +575,13 @@ module.exports = function(app, express) {
 
 				// save the consumidor
 				consumidor.save(function(err) {
-					if (err) res.send(err);
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'El consumidor con ese valor del servicio ya existe. '});
+						else 
+							return res.send(err);
+					}
 
 					// return a message
 					res.json({ message: 'Consumidor Actualizado.' });

@@ -145,7 +145,7 @@ angular.module('entornoCtrl', ['entornoService','ngTable'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
-				$location.path('/entornos');
+				//$location.path('/entornos');
 			});
 	};
 });

@@ -96,18 +96,12 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'consumidor'
 		})	
 
-		.when('/consumidores/editar/:consumidor_id', {
+		.when('/consumidores/:consumidor_id', {
 			templateUrl: 'app/views/pages/consumidores/single.html',
 			controller: 'consumidorEditController',
 			controllerAs: 'consumidor'
 		})		
 
-		// page to edit a consumidor
-		.when('/consumidores/borrar/:consumidor_id', {
-			templateUrl: 'app/views/pages/consumidores/all.html',
-			controller: 'consumidorController',
-			controllerAs: 'consumidor'
-		})	
 		// show all canales
 		.when('/canales', {
 			templateUrl: 'app/views/pages/canales/all.html',

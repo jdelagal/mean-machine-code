@@ -1,0 +1,17 @@
+1) Analisis necesides Sifco. Revisar documento con comentarios.
+2) Fecha de PREP, vamos justos en OSB, sin el backend.
+- Repriorizar todas las tareas, para llegar a Sifco y el backend de Tarjeta, el nuevo servicio.
+- Pomodoro de varios dias, durante 8 horas.
+ + se recude el tiempo de soporte interno a los proyectos
+ del SNS  desde Integracion durante las proximas dos semanas. Correo.
+ + soporte externo a oficina técnica, Chus y Raúl.
+ + Sistemas debería estar al corriente, por prioridades.
+3) Incidencia Oracle de Valencia.
+- Han probado con otro certificado de la CA y da el mismo error.
+4) REPS
+- Tener una versión en breve, aunque sea de "carton piedra". Para la intervención.
+	+ llevaria minimo una semana.
+	+ no habria que subestimar a los interventores.
+	+ verlo con JL.
+- El mantenimiento SNS si se podría mover.
+5) reunion de Carmen de RECES, reunion del jueves interesante.

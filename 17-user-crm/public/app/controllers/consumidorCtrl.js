@@ -143,7 +143,7 @@ angular.module('consumidorCtrl', ['consumidorService','ngTable'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
-				$location.path('/consumidores');
+				//$location.path('/consumidores');
 			});
 	};
 });

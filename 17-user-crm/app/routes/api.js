@@ -388,7 +388,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El entregable con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del entregable ya existe.'});
 					else 
 						return res.send(err);
 				}
@@ -443,7 +443,7 @@ module.exports = function(app, express) {
 					if (err) {
 						// duplicate entry
 						if (err.code == 11000) 
-							return res.json({ success: false, message: 'El entregable con ese valor del servicio ya existe. '});
+							return res.json({ success: false, message: 'El catalogo con ese valor del entregable ya existe. '});
 						else 
 							return res.send(err);
 					}
@@ -526,7 +526,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El consumidor con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del consumidor ya existe. '});
 					else 
 						return res.send(err);
 				}
@@ -578,7 +578,7 @@ module.exports = function(app, express) {
 					if (err) {
 						// duplicate entry
 						if (err.code == 11000) 
-							return res.json({ success: false, message: 'El consumidor con ese valor del servicio ya existe. '});
+							return res.json({ success: false, message: 'El catalogo con ese valor del consumidor ya existe. '});
 						else 
 							return res.send(err);
 					}
@@ -661,7 +661,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El Canal con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del canal ya existe. '});
 					else 
 						return res.send(err);
 				}
@@ -703,7 +703,13 @@ module.exports = function(app, express) {
 		.put(function(req, res) {
 			Canal.findById(req.params.canal_id, function(err, canal) {
 
-				if (err) res.send(err);
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El catalogo con ese valor del canal ya existe. '});
+					else 
+						return res.send(err);
+				}
 
 				// set the new canal information if it exists in the request
 				if (req.body.nombre) canal.nombre = req.body.nombre;
@@ -799,7 +805,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El entorno con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del entorno ya existe.'});
 					else 
 						//console.log ("11111111111111 " + entorno);
 						return res.send(err);
@@ -842,7 +848,14 @@ module.exports = function(app, express) {
 		.put(function(req, res) {
 			Entorno.findById(req.params.entorno_id, function(err, entorno) {
 
-				if (err) res.send(err);
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El catalogo con ese valor del entorno ya existe.'});
+					else 
+						//console.log ("11111111111111 " + entorno);
+						return res.send(err);
+				}
 				if (req.body.fecha_pre) entorno.fecha_pre = req.body.fecha_pre;
 				if (req.body.fecha_demo) entorno.fecha_demo = req.body.fecha_demo;
 				if (req.body.fecha_int) entorno.fecha_int = req.body.fecha_int;

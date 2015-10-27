@@ -141,7 +141,7 @@ angular.module('canalCtrl', ['canalService','ngTable'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
-				$location.path('/canales');
+				//$location.path('/canales');
 			});
 	};
 });

@@ -150,7 +150,7 @@ angular.module('entregableCtrl', ['entregableService','ngTable'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
-				$location.path('/entregables');
+				//$location.path('/entregables');
 			});
 	};
 });

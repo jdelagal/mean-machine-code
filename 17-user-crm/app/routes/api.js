@@ -43,30 +43,30 @@ module.exports = function(app, express) {
 
 	});
 
-	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+	// ruta de autenticacion (POST http://localhost:3000/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
 
-	  // find the user
+	  // encuentra el usuario
 	  User.findOne({
 	    username: req.body.username
 	  }).select('name username password').exec(function(err, user) {
 
 	    if (err) throw err;
 
-	    // no user with that username was found
+	    // si el usuario no es encontrado
 	    if (!user) {
 	      res.json({ 
 	      	success: false, 
-	      	message: 'Authentication failed. User not found.' 
+	      	message: 'Fallo de Authentication. Usuario no encontrado.' 
 	    	});
 	    } else if (user) {
 
-	      // check if password matches
+	      // chequeo de la password
 	      var validPassword = user.comparePassword(req.body.password);
 	      if (!validPassword) {
 	        res.json({ 
 	        	success: false, 
-	        	message: 'Authentication failed. Wrong password.' 
+	        	message: 'Fallo de Authentication. Password errónea.' 
 	      	});
 	      } else {
 
@@ -82,7 +82,7 @@ module.exports = function(app, express) {
 	        // return the information including token as JSON
 	        res.json({
 	          success: true,
-	          message: 'Enjoy your token!',
+	          message: '¡Disfruta de tu token!',
 	          token: token
 	        });
 	      }   
@@ -92,37 +92,37 @@ module.exports = function(app, express) {
 	  });
 	});
 
-	// route middleware to verify a token
+	// ruta midelware para verificar el token
 	apiRouter.use(function(req, res, next) {
-		// do logging
-		console.log('Somebody just came to our app!');
+		// empieza
+		console.log('¡Alguien ha entrado en nuestra app!');
 
-	  // check header or url parameters or post parameters for token
+	  // comprueba la cabecera o parametros url o parametros post para el token
 	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 	  // decode token
 	  if (token) {
 
-	    // verifies secret and checks exp
+	    // Verifica el secreto y la expiración
 	    jwt.verify(token, superSecret, function(err, decoded) {      
 
 	      if (err) {
 	        res.status(403).send({ 
 	        	success: false, 
-	        	message: 'Failed to authenticate token.' 
+	        	message: 'Fallo de autenticacion con el token.' 
 	    	});  	   
 	      } else { 
-	        // if everything is good, save to request for use in other routes
+	        // si todo va bien, guarda la petición para el uso de siguiente rutas
 	        req.decoded = decoded;
 	            
-	        next(); // make sure we go to the next routes and don't stop here
+	        next(); // nos aseguramos que vamos a la siguiente ruta y no paramos aqui
 	      }
 	    });
 
 	  } else {
 
-	    // if there is no token
-	    // return an HTTP response of 403 (access forbidden) and an error message
+	    // si no tenemos token
+	    // devuelve una respuesta HTTP 403 (access forbidden) y un mensaje de error
    	 	res.status(403).send({ 
    	 		success: false, 
    	 		message: 'No token provided.' 

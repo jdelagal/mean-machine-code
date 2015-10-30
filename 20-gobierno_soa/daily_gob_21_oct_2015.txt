@@ -1,0 +1,27 @@
+1) Alex (soporte REPS) con SESCAM. Sistema separado, quiera una respuesta distinta. Otro agente y canal para la consejeria. 
+- Comentarlo con Iván. En la cabecera viene el origen, con urls. Alguien en origen tendria que mantener las urls. Va por Addresing --> a nivel de comunicaciones impacta ¿?. guardamos en cache las urls y es dimámico. Lo unico reconocer el agente nuevo. Otra opcion SESCAM le ponga url a la consejeria. Mejor hablarlo con Iván.
+- Hace tiempo en intercambiador paso algo parecido con Canarias.
+
+2) Cataluña a Celia Varela. Es getInfornmacionActual para asegurados.
+- Necesitamos más informacion del consunmidor. Luego el acuerdo de verdad. Que primero tienen que ir a su nodo y luego aqui, como en Murcia.
+- Contestar que necesitamos mas info, que el nuestro valdria. Que tiempo de respuesta y frecuencia de uso necesitan. Integracion contesta a Celia. Os pasamos el AI de TSI. Mañana o pasado para validar el AI. El MOI mañana en el dayly. 
+- Pendiente priorizar.
+
+3) Receta Murcia y CyL. Murcia no está en el plan de Receta. 
+- Previo a solicitar planificacion, nos tienen que pasar..etc el protocolo lo tiene Ramón. Crear los endpoint en OSB.
+- Murcia está en fase muy inicial. Enviar a Sistemas incidencia de Murcia del XSD del WSDL de buenas practicas que no se resuelve.
+- I1, I2, P1, P2, etc. para las CCAA.
+- Preparacion del soporte y luego de los recursos.
+- Juanpa lo va a hacer, los endpoint.
+- Definir el servicio para Murcia para darles soporte a sus preguntas si llegan al simulador. 
+- Es decir, planificar el ritmo de soporte / preguntas de Murcia. El tiempo no importa, Chus lo que quiere es una linea base.
+
+4) SESCAM Receta, pasa lo mismo. 
+- Falta el XDR (conmsolidación) en Pre.
+- Juanpa en un par de horas lo hace. Podría ser mantenimiento.
+
+5) Soporte a las incidencias, lista de distribucion. Correo de Chus con el procedimiento.
+- Evitar duplicidades, que cada rol ajuste su actividas y que no se quede nada sin contestar.
+- Dar valor a la incidencia, no solo peticion / respuesta.
+- Que ocurre si alguna se sale del receptor. Se estudia.
+...

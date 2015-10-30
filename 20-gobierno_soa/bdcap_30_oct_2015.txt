@@ -1,0 +1,46 @@
+1) Chema: RNIP BCAP
+- Necesaitan ciertos campos como:
+	+ situacion laboral.
+	+ estado economico.
+2) Necesidades.
+- Una vez al año.
+- Datos del paciente con una fecha.
+- Envian el CIP-CITE o CODSNS.
+	+ Alguna CA puede enviar su CIP-CITE. CITE id del teritorio.
+	+ CA INE, es lo que tienen.
+	+ Chus, creemos que no se hace validacion.
+	+ Problemas Madrid con el CIP-CITE.
+	+ Agente: CA ¿?. Entrada. Si hay CIP-CITE. Lo pensamos.
+		+ Os daremos un dato interpretable.
+- El CITE se puede conocer en CA o agente.
+- Ofreceremos algo genérico. Ingesa por separado ¿?.
+- Os damos la relacion que es estatica.
+- Si hay fallecimiento, necesitamos los datos de usuarios fallecidos. Estado fallecido.
+	+ Devolver el tipo, etc.. en todos los casos se devuelve.
+	+ En consultas el estado 2 es visible. Aplica cuando se fallecio, etc.
+- Fecha situación la de final de año, 31 de diciembre.
+- El parametro técnico para control de errores.
+	+ Carga la CCAA, el usuario lo hace cuando quiere.
+	+ TSI, puede estar no cargado desde el principio. Lo pueden hacer en nocturna o tenemos que pensarlo...El 10% de la poblacion española.
+	+ El proceso nocturno de TSI tiene que ser del tirón, sin paradas. Requisito técnico.
+	+ TSI los findes no funciona. Cuando mas carga tiene es cuando estan los centros funcionando.
+	+ Se podria hacer por bloques de CCAA, de una en una ¿?. Que lo firme los usuarios... Sería posible.
+	+ Las CCAA envian los ficheros de golpe o en una franja ¿?. Es flexible, superado.
+	+ Prueba rendimiento, de seguido los bloques. Hablar con Sistemas. 800.000 Andalucía peor de los casos. Pe. el proceso de consolidacion asincrona de mensajeria era en paralelo 300.000 de golpe.
+- Salida
+	+ condiciones del titular, beneficiarios, no esta en el titulo. NAF titular, NAF beneficiario. Este servicio no estaba previsto. Necesario si o si.
+		+ Si los campos son iguales es titular, sino es beneficiario.
+	+ aportacion farmaceutica (indicador y subindicador), agente y el estado.
+- Operaciones
+	+ Gestion de Errores por hacer.
+		+ Que pasa si se para a la mitad. Habria que repetir el bloque completo de la CA ¿?. Si.
+	+ Funcionan los Sitemas de noche ¿?. investigar. Pe. Murcia de TSI.
+		+ Pe. HCD tiene procesos nocturnos de carga.
+	+ (*) Habria que poner los tiempos de trabajo para que Sistemas lo vea, y sepa que necesitamos la disponibilidad.
+	+ Revisar los errores del AI.
+	+ Podría marcar los que han fallado. Mejor relanzar que reintentar...GEC ¿?. Mejor relanzar los marcados con error.
+	+ Crear TSI anonimizados como en GEC si, pero para este caso. Se podría hacer con uno (Iván, sin cachar :) ).
+	+ Rendimiento, poner retardos para no tener problemas de filesystem en BD. O mejor, hacer de antemano un query para saber el uso.
+		+ Simular lo que puede tardar una fecha dada en la consulta, 30.
+2) Servicio de TSI, foto de los usuarios.
+	+ cruces con la nueva CMDB. 50 millones, incluye las urgencias.

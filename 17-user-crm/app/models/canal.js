@@ -7,7 +7,7 @@ var Consumidor = mongoose.model('Consumidor');
 var CanalSchema   = new Schema({
 	nombre: { type: String},
 	//proceso: String,
-	consumidor: { type: Schema.ObjectId, ref: 'Consumidor' } 
+	consumidor: { type: Schema.ObjectId, ref: 'Consumidor', unique: true } 
 });
 
 module.exports = mongoose.model('Canal', CanalSchema);

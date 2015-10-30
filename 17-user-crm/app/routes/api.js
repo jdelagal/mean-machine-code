@@ -43,30 +43,30 @@ module.exports = function(app, express) {
 
 	});
 
-	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+	// ruta de autenticacion (POST http://localhost:3000/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
 
-	  // find the user
+	  // encuentra el usuario
 	  User.findOne({
 	    username: req.body.username
 	  }).select('name username password').exec(function(err, user) {
 
 	    if (err) throw err;
 
-	    // no user with that username was found
+	    // si el usuario no es encontrado
 	    if (!user) {
 	      res.json({ 
 	      	success: false, 
-	      	message: 'Authentication failed. User not found.' 
+	      	message: 'Fallo de Authentication. Usuario no encontrado.' 
 	    	});
 	    } else if (user) {
 
-	      // check if password matches
+	      // chequeo de la password
 	      var validPassword = user.comparePassword(req.body.password);
 	      if (!validPassword) {
 	        res.json({ 
 	        	success: false, 
-	        	message: 'Authentication failed. Wrong password.' 
+	        	message: 'Fallo de Authentication. Password errónea.' 
 	      	});
 	      } else {
 
@@ -82,7 +82,7 @@ module.exports = function(app, express) {
 	        // return the information including token as JSON
 	        res.json({
 	          success: true,
-	          message: 'Enjoy your token!',
+	          message: '¡Disfruta de tu token!',
 	          token: token
 	        });
 	      }   
@@ -92,37 +92,37 @@ module.exports = function(app, express) {
 	  });
 	});
 
-	// route middleware to verify a token
+	// ruta midelware para verificar el token
 	apiRouter.use(function(req, res, next) {
-		// do logging
-		console.log('Somebody just came to our app!');
+		// empieza
+		console.log('¡Alguien ha entrado en nuestra app!');
 
-	  // check header or url parameters or post parameters for token
+	  // comprueba la cabecera o parametros url o parametros post para el token
 	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 	  // decode token
 	  if (token) {
 
-	    // verifies secret and checks exp
+	    // Verifica el secreto y la expiración
 	    jwt.verify(token, superSecret, function(err, decoded) {      
 
 	      if (err) {
 	        res.status(403).send({ 
 	        	success: false, 
-	        	message: 'Failed to authenticate token.' 
+	        	message: 'Fallo de autenticacion con el token.' 
 	    	});  	   
 	      } else { 
-	        // if everything is good, save to request for use in other routes
+	        // si todo va bien, guarda la petición para el uso de siguiente rutas
 	        req.decoded = decoded;
 	            
-	        next(); // make sure we go to the next routes and don't stop here
+	        next(); // nos aseguramos que vamos a la siguiente ruta y no paramos aqui
 	      }
 	    });
 
 	  } else {
 
-	    // if there is no token
-	    // return an HTTP response of 403 (access forbidden) and an error message
+	    // si no tenemos token
+	    // devuelve una respuesta HTTP 403 (access forbidden) y un mensaje de error
    	 	res.status(403).send({ 
    	 		success: false, 
    	 		message: 'No token provided.' 
@@ -235,7 +235,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El catatogo con ese valor del servicio ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del servicio ya existe. '});
 					else 
 						return res.send(err);
 				}
@@ -278,7 +278,7 @@ module.exports = function(app, express) {
 
 		// get the catalogo with that id
 		.get(function(req, res) {
-			Catalogo.findByentregablesId(req.params.catalogo_id, function(err, catalogo) {
+			Catalogo.findById(req.params.catalogo_id, function(err, catalogo) {
 				if (err) res.send(err);
 
 				// return that catalogo
@@ -290,8 +290,6 @@ module.exports = function(app, express) {
 		.put(function(req, res) {
 			Catalogo.findById(req.params.catalogo_id, function(err, catalogo) {
 
-				if (err) res.send(err);
-
 				// set the new catalogo information if it exists in the request
 				if (req.body.servicio) catalogo.servicio = req.body.servicio;
 				if (req.body.canal) catalogo.canal = req.body.canal;
@@ -299,7 +297,14 @@ module.exports = function(app, express) {
 
 				// save the catalogo
 				catalogo.save(function(err) {
-					if (err) res.send(err);
+					// duplicate entry
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'El catalogo con ese valor del servicio ya existe. '});
+						else 
+							return res.send(err);
+					}
 
 					// return a message
 					res.json({ message: 'Catalogo actualizado.' });
@@ -369,18 +374,7 @@ module.exports = function(app, express) {
 
 	// on routes that end in /entregables/:catalogo_id
 	// ----------------------------------------------------
-	apiRouter.route('/entregables/:catalogo_id')
-
-		// get the entregable with that id
-		.get(function(req, res) {
-			Entregable.findById(req.params.catalogo_id, function(err, entregable) {
-				Catalogo.populate(entregable, {path: 'catalogo'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(entregable);
-			});
-		})
+	apiRouter.route('/a_entregables/:catalogo_id')
 
 		.post(function(req, res) {
 			var entregable = new Entregable();		// create a new instance of the Catalogo model
@@ -394,7 +388,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El entregable con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del entregable ya existe.'});
 					else 
 						return res.send(err);
 				}
@@ -424,6 +418,15 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/entregables/:entregable_id')
 
+		// get the entregable with that id
+		.get(function(req, res) {
+			Entregable.findById(req.params.entregable_id, function(err, entregable) {
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(entregable);
+			});
+		})
 		// update the catalogo with this id
 		.put(function(req, res) {
 			Entregable.findById(req.params.entregable_id, function(err, entregable) {
@@ -437,7 +440,13 @@ module.exports = function(app, express) {
 
 				// save the entregable
 				entregable.save(function(err) {
-					if (err) res.send(err);
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'El catalogo con ese valor del entregable ya existe. '});
+						else 
+							return res.send(err);
+					}
 
 					// return a message
 					res.json({ message: 'Entregable Actualizado.' });
@@ -506,17 +515,7 @@ module.exports = function(app, express) {
 		});
 	// on routes that end in /consumidores/:catalogo_id
 	// ----------------------------------------------------
-	apiRouter.route('/consumidores/:catalogo_id')
-				// get the consumidor with that id
-		.get(function(req, res) {
-			Consumidor.findById(req.params.catalogo_id, function(err, consumidor) {
-				Catalogo.populate(consumidor, {path: 'catalogo'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(consumidor);
-			});
-		})
+	apiRouter.route('/a_consumidores/:catalogo_id')
 
 		.post(function(req, res) {
 			var consumidor = new Consumidor();		// create a new instance of the Catalogo model
@@ -527,7 +526,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El consumidor con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del consumidor ya existe. '});
 					else 
 						return res.send(err);
 				}
@@ -556,7 +555,15 @@ module.exports = function(app, express) {
 	// on routes that end in /entregables/:entregable_id
 	// ----------------------------------------------------
 	apiRouter.route('/consumidores/:consumidor_id')
+				// get the consumidor with that id
+		.get(function(req, res) {
+			Consumidor.findById(req.params.consumidor_id, function(err, consumidor) {
+				if (err) res.send(err);
 
+				// return that entregable
+				res.json(consumidor);
+			});
+		})
 				// update the catalogo with this id
 		.put(function(req, res) {
 			Consumidor.findById(req.params.consumidor_id, function(err, consumidor) {
@@ -568,7 +575,13 @@ module.exports = function(app, express) {
 
 				// save the consumidor
 				consumidor.save(function(err) {
-					if (err) res.send(err);
+					if (err) {
+						// duplicate entry
+						if (err.code == 11000) 
+							return res.json({ success: false, message: 'El catalogo con ese valor del consumidor ya existe. '});
+						else 
+							return res.send(err);
+					}
 
 					// return a message
 					res.json({ message: 'Consumidor Actualizado.' });
@@ -637,17 +650,8 @@ module.exports = function(app, express) {
 
 	// on routes that end in /canales/:consumidor_id
 	// ----------------------------------------------------
-	apiRouter.route('/canales/:consumidor_id')
+	apiRouter.route('/a_canales/:consumidor_id')
 
-		.get(function(req, res) {
-			Canal.findById(req.params.consumidor_id, function(err, canal) {
-				Consumidor.populate(canal, {path: 'consumidor'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(canal);
-			});
-		})
 		.post(function(req, res) {
 			var canal = new Canal();		// create a new instance of the Catalogo model
 			canal.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
@@ -657,7 +661,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El Canal con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del canal ya existe. '});
 					else 
 						return res.send(err);
 				}
@@ -687,11 +691,25 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/canales/:canal_id')
 
+		.get(function(req, res) {
+			Canal.findById(req.params.canal_id, function(err, canal) {
+				if (err) res.send(err);
+
+				// return that entregable
+				res.json(canal);
+			});
+		})
 				// update the catalogo with this id
 		.put(function(req, res) {
 			Canal.findById(req.params.canal_id, function(err, canal) {
 
-				if (err) res.send(err);
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El catalogo con ese valor del canal ya existe. '});
+					else 
+						return res.send(err);
+				}
 
 				// set the new canal information if it exists in the request
 				if (req.body.nombre) canal.nombre = req.body.nombre;
@@ -767,19 +785,7 @@ module.exports = function(app, express) {
 
 	// on routes that end in /entornos/:entregable_id
 	// ----------------------------------------------------
-	apiRouter.route('/entornos/:entregable_id')
-
-		// get the entregable with that id
-		.get(function(req, res) {
-			Entorno.findById(req.params.entregable_id, function(err, entorno) {
-				Entregable.populate(entorno, {path: 'entregable'})
-				if (err) res.send(err);
-
-				// return that entregable
-				res.json(entorno);
-
-			});
-		})
+	apiRouter.route('/a_entornos/:entregable_id')
 
 		.post(function(req, res) {
 			var entorno = new Entorno();		// create a new instance of the entorno model
@@ -799,7 +805,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El entorno con ese valor ya existe. '});
+						return res.json({ success: false, message: 'El catalogo con ese valor del entorno ya existe.'});
 					else 
 						//console.log ("11111111111111 " + entorno);
 						return res.send(err);
@@ -830,16 +836,31 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/entornos/:entorno_id')
 
+		.get(function(req, res) {
+			Entorno.findById(req.params.entorno_id, function(err, entorno) {
+				if (err) res.send(err);
+
+				// return that entorno
+				res.json(entorno);
+			});
+		})
 				// update the catalogo with this id
 		.put(function(req, res) {
 			Entorno.findById(req.params.entorno_id, function(err, entorno) {
 
-				if (err) res.send(err);
-				entorno.fecha_pre = req.body.fecha_pre;
-				entorno.fecha_demo = req.body.fecha_demo;
-				entorno.fecha_int = req.body.fecha_int;
-				entorno.fecha_lab = req.body.fecha_lab;
-				entorno.fecha_dev = req.body.fecha_dev;
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'El catalogo con ese valor del entorno ya existe.'});
+					else 
+						//console.log ("11111111111111 " + entorno);
+						return res.send(err);
+				}
+				if (req.body.fecha_pre) entorno.fecha_pre = req.body.fecha_pre;
+				if (req.body.fecha_demo) entorno.fecha_demo = req.body.fecha_demo;
+				if (req.body.fecha_int) entorno.fecha_int = req.body.fecha_int;
+				if (req.body.fecha_lab) entorno.fecha_lab = req.body.fecha_lab;
+				if (req.body.fecha_dev) entorno.fecha_dev = req.body.fecha_dev;
 				// save the entorno
 				entorno.save(function(err) {
 					if (err) res.send(err);
@@ -894,9 +915,9 @@ module.exports = function(app, express) {
 				});					
 		})
 
-	// on routes that end in /entregables/:catalogo_id
+	// on routes that end in /b_entregables/:catalogo_id
 	// ----------------------------------------------------
-	apiRouter.route('/entregables/buscar/:catalogo_id')
+	apiRouter.route('/b_entregables/:catalogo_id')
 
 		.get(function(req, res) {	
 			Entregable.find({catalogo: req.params.catalogo_id}, function(err, entregables) {
@@ -909,45 +930,58 @@ module.exports = function(app, express) {
 				});
 			});		
 
-		})
+		});		
 
-		.post(function(req, res) {
-			var entregable = new Entregable();		// create a new instance of the Catalogo model
-			entregable.nombre = req.body.nombre;  // set the catalogos nombre (comes from the request)
-			entregable.entorno = req.body.entorno;  // set the catalogos entorno (comes from the request)
-			entregable.catalogo = req.params.catalogo_id;  // set the catalogos entorno (comes from the request)
-			entregable.fecha_prod = req.body.fecha_prod;  // set the catalogos fecha_prod (comes from the request)
-			if (req.body.fecha_prod) entregable.fecha_prod = req.body.fecha_prod
-			else entregable.fecha_prod = new Date;
-			entregable.save(function(err) {
-				if (err) {
-					// duplicate entry
-					if (err.code == 11000) 
-						return res.json({ success: false, message: 'El entregable con ese valor ya existe. '});
-					else 
-						return res.send(err);
-				}
+	// on routes that end in /b_entornos/:entregable_id
+	// ----------------------------------------------------
+	apiRouter.route('/b_entornos/:entregable_id')
 
-				// return a message
-				res.json({ message: 'Entregable creado.' });
-				var auditoria = new Auditoria();
-				auditoria.accion = 'post';
-				auditoria.crud = 'entregable';
-				auditoria.datos = entregable;
-				auditoria.fecha = new Date;
-				// To do
-				//auditoria.usuario = '';
-				auditoria.save(function(err) {
-					if (err) {
-					// duplicate entry
-						if (err.code == 11000) 
-							return res.json({ success: false, message: 'Error durante la auditoria. '});
-						else 
-							return res.send(err);
-						}
-					});				
-				});				
-		});				
+		.get(function(req, res) {	
+			Entorno.find({entregable: req.params.entregable_id}, function(err, entornos) {
+				Entregable.populate(entornos, {path: "entregable"}, function(err, entornos){
+					if (err) res.send(err);
+
+					// return the entregables
+					res.json(entornos);
+					//console.log ("entornos: " + entornos);
+				});
+			});		
+
+		});		
+
+	// on routes that end in /b_entregables/:catalogo_id
+	// ----------------------------------------------------
+	apiRouter.route('/b_consumidores/:catalogo_id')
+
+		.get(function(req, res) {	
+			Consumidor.find({catalogo: req.params.catalogo_id}, function(err, consumidores) {
+				Catalogo.populate(consumidores, {path: "catalogo"}, function(err, consumidores){
+					if (err) res.send(err);
+
+					// return the entregables
+					res.json(consumidores);
+					//console.log ("11111111111111 " + entregables);
+				});
+			});		
+
+		});		
+
+	// on routes that end in /b_canales/:consumidor_id
+	// ----------------------------------------------------
+	apiRouter.route('/b_canales/:consumidor_id')
+
+		.get(function(req, res) {	
+			Canal.find({consumidor: req.params.consumidor_id}, function(err, canales) {
+				Consumidor.populate(canales, {path: "consumidor"}, function(err, canales){
+					if (err) res.send(err);
+
+					// return the entregables
+					res.json(canales);
+					//console.log ("11111111111111 " + entregables);
+				});
+			});		
+
+		});						
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);

@@ -1,8 +1,0 @@
-1) Posibilidad de tratar VerDNI que no tiene AI.
-2) Correo Chus en constestacion al Health Check de OSB propuesto por Sistemas.
-3) Correo Chus de Sifco.
-- Valencia planteo un requisito administrativo a estas alturas.
-- Necesidades 2016.
-- Los PRE de Conectis es nuestro Int. Menos para HCDSNS en Valencia.
-- El entorno tiene que estar disponible. Tarjeta no colisiona.
-- Lo intentamos en Int y si falla se pasa a PRE.

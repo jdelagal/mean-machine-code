@@ -16,7 +16,7 @@ angular.module('canalService', [])
 	};
 	// create a canal
 	canalFactory.create = function(id, canalData) {
-		return $http.post('/api/canales/'+id, canalData);
+		return $http.post('/api/a_canales/'+id, canalData);
 	};
 
 		// update a canal
@@ -28,6 +28,13 @@ angular.module('canalService', [])
 	canalFactory.delete = function(id) {
 		return $http.delete('/api/canales/' + id);
 	};	
+
+	// get all canales
+	canalFactory.allBuscar = function(id) {
+		return $http.get('/api/b_canales/'+id);
+
+	};
+	// g	
 	// return our entire canalFactory object
 	return canalFactory;
 

@@ -16,7 +16,7 @@ angular.module('entregableService', [])
 	};
 	// create a entregables
 	entregableFactory.create = function(id, entregableData) {
-		return $http.post('/api/entregables/'+id, entregableData);
+		return $http.post('/api/a_entregables/'+id, entregableData);
 	};
 
 	// get a single entregable de un catalogo
@@ -36,9 +36,10 @@ angular.module('entregableService', [])
 
 	// get all entregables filtrados
 	entregableFactory.allBuscar = function(id) {
-		return $http.get('/api/entregables/buscar/'+ id);
+		return $http.get('/api/b_entregables/'+ id);
 
 	};	
+
 	// return our entire entragableFactory object
 	return entregableFactory;
 

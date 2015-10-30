@@ -16,7 +16,7 @@ angular.module('entornoService', [])
 	};
 	// create a entorno
 	entornoFactory.create = function(id, entornoData) {
-		return $http.post('/api/entornos/'+id, entornoData);
+		return $http.post('/api/a_entornos/'+id, entornoData);
 	};
 
 	// update a entorno
@@ -28,6 +28,13 @@ angular.module('entornoService', [])
 	entornoFactory.delete = function(id) {
 		return $http.delete('/api/entornos/' + id);
 	};	
+
+
+	// get all entregables filtrados
+	entornoFactory.allBuscar = function(id) {
+		return $http.get('/api/b_entornos/'+ id);
+
+	};		
 	// return our entire entornoFactory object
 	return entornoFactory;
 

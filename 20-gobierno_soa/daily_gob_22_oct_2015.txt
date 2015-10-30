@@ -1,6 +1,0 @@
-1) REPS. 
-- Desde las CCAA, le pasa la SAML y no sabe coger el principal. Dar soporte a Esperanza por parte de Iván.
-- GEC. Incluir en las maquinas virtuales de REPS. 
-- Formación BPM. Sinergias del equipo.
-2) MOI
-- buscar tabla de domicilio en especificacion de TSI.

@@ -123,7 +123,7 @@ angular.module('catalogoCtrl', ['catalogoService','ngTable'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
-				$location.path('/catalogos');
+				//$location.path('/catalogos');
 			});
 	};
 });

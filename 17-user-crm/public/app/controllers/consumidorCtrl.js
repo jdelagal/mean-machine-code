@@ -60,6 +60,35 @@ angular.module('consumidorCtrl', ['consumidorService','ngTable'])
 	};		
 })
 
+.controller('consumidorBuscarController', function(Consumidor,$rootScope,ngTableParams,$routeParams) {
+
+	var vm = this;
+
+	// set a processing variable to show loading things
+	vm.consumiendo = true;
+
+	var params = {
+		page: 1,
+	    count: 9
+	}
+	// grab all the users at page load
+	Consumidor.allBuscar($routeParams.catalogo_id)
+		.success(function(data) {
+
+			// when all the users come back, remove the processing variable
+			vm.consumiendo = false;
+
+			vm.consumidores = data;
+			var settings = {
+	            total: vm.consumidores.length, // resultados en total,
+	            counts: [10, 1000, 10000],
+	            getData: function($defer, params) {
+	        	    $defer.resolve(vm.consumidores.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+	            }
+	        };		
+	        $rootScope.tableParams = new ngTableParams(params,settings);
+		});
+})
 .controller('consumidorCatalogoCreateController', function($routeParams, Consumidor) {
 
 	var vm = this;
@@ -114,7 +143,7 @@ angular.module('consumidorCtrl', ['consumidorService','ngTable'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
-				$location.path('/consumidores');
+				//$location.path('/consumidores');
 			});
 	};
 });
